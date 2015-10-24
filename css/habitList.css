@@ -1,0 +1,48 @@
+body {
+	text-align: center;
+}
+section {
+	border-bottom: 1px solid rgb(204,204,204);
+	padding: 1em;
+}
+section > div {
+	width: 100%;
+}
+section > div >h3,div {
+	display: inline-block;
+	margin: 0;
+}
+
+section > div > div {
+	float: right;
+}
+.circle {
+	border: 1px solid rgb(152,152,152);
+	background-color: rgb(240,240,240);
+	border-radius: 50%;
+	width: 1em;
+	height: 1em;
+	text-align: center;
+}
+.habitIcon {
+	width: 10em;
+	height: 10em;
+	border: none;
+}
+
+button{
+	color: white;
+}
+
+.voteBtn {
+	width: 8em;
+	height: 8em;
+	border: none;
+	background-color: rgb(204,204,204);
+}
+
+.addBtn {
+	width: 4em;
+	height: 4em;
+	border: none;
+}
