@@ -1,15 +1,29 @@
 body {
 	text-align: center;
+    font-family: sans-serif;
 }
+
+input {
+    height: 25px;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 5px;
+}
+
+p {
+    text-align: left;
+}
+
 section {
 	padding: 1em;
 }
+
 section > div {
 	width: 100%;
 }
 
 header{
-	background-color: rgb(152,152,152);
+	background-color: #00bcd4;
 	height: 1em;
 	text-align: center;
 	padding: 1em;
@@ -44,27 +58,56 @@ button{
 	color: white;
 }
 
-.daysOfWeek{
+.daysOfWeek {
 	width: 4em;
 	height: 4em;
 	border: none;
 	background-color: rgb(215,215,215);
 }
+
+.daysOfWeek:focus {
+    width: 4em;
+	height: 4em;
+	border: none;
+	background-color: #8bc34a;
+}
+
 .noOfTime {
 	width: 4em;
 	height: 4em;
 	border: none;
 	background-color: rgb(215,215,215);
 }
-.saveIcon{
-	width: 12em;
+
+.noOfTime:focus {
+	width: 4em;
 	height: 4em;
 	border: none;
-	background-color: rgb(180, 180, 180);
+	background-color: #8bc34a;
 }
+
+.saveIcon{
+	width: 100%;
+	height: 4em;
+	border: none;
+	background-color: #ec407a;
+}
+
 .close{
 	border: none;
 	background-color: transparent;
 	float: left;
 	padding: 0;
+}
+
+#money {
+    background-color: #ffc107
+}
+
+#sleep {
+    background-color: #673ab7
+}
+
+#nails {
+    background-color: #ec407a;
 }
