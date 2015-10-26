@@ -1,0 +1,36 @@
+header{
+	background-color: rgb(152,152,152);
+	height: 1em;
+	text-align: center;
+	padding: 1em;
+}
+
+.close{
+	border: none;
+	background-color: transparent;
+	float: left;
+	padding: 0;
+}
+.save{
+	background-color: rgb(152,152,152);
+	width: 200px;
+}
+.circle {
+	border: 1px solid rgb(152,152,152);
+	background-color: rgb(240,240,240);
+	border-radius: 50%;
+	width: 1em;
+	height: 1em;
+	text-align: center;
+}
+.habitIcon {
+	width: 10em;
+	height: 10em;
+	border: none;
+	color: white;
+}
+
+.noOfTime {
+	width: 2em;
+	height: 2em;
+}
