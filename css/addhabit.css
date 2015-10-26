@@ -1,0 +1,57 @@
+body {
+	text-align: center;
+}
+section {
+	padding: 1em;
+}
+section > div {
+	width: 100%;
+}
+
+.circle {
+	border: 1px solid rgb(152,152,152);
+	background-color: rgb(240,240,240);
+	border-radius: 50%;
+	width: 1em;
+	height: 1em;
+	text-align: center;
+}
+
+.square{
+	border: 1px solid rgb(152,152,152);
+	background-color: rgb(240,240,240);
+	border-radius: 7%;
+	width: 1em;
+	height: 1em;
+	text-align: center;
+}
+
+button{
+	color: black;
+}
+
+.addBtn {
+	width: 8em;
+	height: 8em;
+	border: none;
+	background-color: rgb(204,204,204);
+}
+
+.daysOfWeek{
+	width: 4em;
+	height: 4em;
+	border: none;
+	background-color: rgb(215,215,215);
+}
+.noOfTime {
+	width: 4em;
+	height: 4em;
+	border: none;
+	background-color: rgb(215,215,215);
+}
+.saveIcon{
+	width: 12em;
+	height: 4em;
+	border: none;
+	background-color: rgb(180, 180, 180);
+}
