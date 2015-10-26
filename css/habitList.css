@@ -3,6 +3,12 @@ body {
     font-family: sans-serif;
 }
 
+header{
+	background-color: #00bcd4;
+    color: white;
+	text-align: center;
+}
+
 section {
 	padding: 1em;
 }
@@ -20,6 +26,14 @@ section div p,div {
 section div p {
     float: left;
     text-decoration: none;
+}
+
+#description {
+    margin-left: 7.5em;
+}
+
+section div p ~ p {
+    float: right;
 }
 
 .noOfTimeActive {
@@ -40,14 +54,6 @@ section div p {
 	text-align: center;
 }
 
-.square {
-	background-color: rgb(240,240,240);
-	border-radius: 50%;
-	width: 1em;
-	height: 1em;
-	text-align: center;
-}
-
 .habitIcon {
 	width: 10em;
 	height: 10em;
@@ -55,9 +61,22 @@ section div p {
     margin-right: 7em;
 }
 
-button{
+button {
 	color: white;
     align-content: center;
+}
+
+#progress {
+    display: inline-block;
+    font-size: 48px;
+}
+
+progress {
+    width: 5em;
+}
+
+span {
+    display: inline-block;
 }
 
 .voteBtn {
@@ -77,6 +96,11 @@ button{
 
 #money {
     background-color: #ffc107;
+}
+
+#money-edit {
+    background-color: #ffc107;
+    margin-right: 10px;
 }
 
 #sleep {

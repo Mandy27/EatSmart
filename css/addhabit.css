@@ -3,6 +3,10 @@ body {
     font-family: sans-serif;
 }
 
+.close {
+    color: white;
+}
+
 input {
     height: 25px;
     width: 100%;
@@ -24,6 +28,7 @@ section > div {
 
 header{
 	background-color: #00bcd4;
+    color: white;
 	height: 1em;
 	text-align: center;
 	padding: 1em;
