@@ -1,48 +1,88 @@
 body {
-	text-align: center;
+    text-align: center;
+    font-family: sans-serif;
 }
+
 section {
-	border-bottom: 1px solid rgb(204,204,204);
 	padding: 1em;
 }
-section > div {
+
+section div {
 	width: 100%;
 }
-section > div >h3,div {
+
+section div p,div {
 	display: inline-block;
 	margin: 0;
+    text-align: center;
+}
+
+section div p {
+    float: left;
+    text-decoration: none;
+}
+
+.noOfTimeActive {
+	float: right;
+    border: 1px solid rgb(152,152,152);
 }
 
 .noOfTime {
-	float: right;
+    float: right;
+    border: 1px solid rgb(240,240,240);
 }
+
 .circle {
-	border: 1px solid rgb(152,152,152);
 	background-color: rgb(240,240,240);
 	border-radius: 50%;
 	width: 1em;
 	height: 1em;
 	text-align: center;
 }
+
 .habitIcon {
 	width: 10em;
 	height: 10em;
 	border: none;
+    margin-right: 7em;
 }
 
 button{
 	color: white;
+    align-content: center;
 }
 
 .voteBtn {
-	width: 8em;
-	height: 8em;
+	width: 6em;
+	height: 6em;
 	border: none;
 	background-color: rgb(204,204,204);
+    margin: 5px;
 }
 
 .addBtn {
 	width: 4em;
 	height: 4em;
 	border: none;
+    background-color: #00bcd4;
+}
+
+#money {
+    background-color: #ffc107;
+}
+
+#sleep {
+    background-color: #673ab7
+}
+
+#nails {
+    background-color: #ec407a;
+}
+
+#yes {
+    background-color: #8bc34a;
+}
+
+#no {
+    background-color: #ef5350;
 }
