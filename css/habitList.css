@@ -29,7 +29,10 @@ section div p {
 }
 
 #description {
-    margin-left: 7.5em;
+    position: absolute;
+    top: 145px;  
+    width: 260px;
+    left: 36%; 
 }
 
 section div p ~ p {
@@ -72,7 +75,10 @@ button {
 }
 
 progress {
-    width: 5em;
+    position: absolute; 
+    left: 50%; 
+    top: 120px; 
+    width: 200px; 
 }
 
 span {
@@ -111,10 +117,49 @@ span {
     background-color: #ec407a;
 }
 
-#yes {
+.yes {
     background-color: #8bc34a;
 }
 
-#no {
+.no {
     background-color: #ef5350;
+}
+
+div#voted{
+    width: 420px;
+}
+
+#money-edit{
+    float: left;
+}
+
+#voted div{
+    display: inline;
+}
+
+.fa-thumbs-o-up{
+    float right;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+@media(min-width: 420px){
+    #description {
+        left: 35%;
+    }
+}
+
+@media(min-width: 780px){
+    #description {
+        left: 42%;
+    }
+}
+
+@media(min-width: 1200px){
+    #description {
+        left: 46.9%;
+    }
 }

@@ -12,13 +12,16 @@
 			<p>Spend less $$$</p>
 			<div class="circle  noOfTimeActive">1</div>
 		</div>
-		<div>
-			<button class="circle habitIcon" id="money-edit" onclick="window.location.href ='./editHabitList.html'"><i class="fa fa-money fa-5x"></i></button>
-					<span href="editHabitList.html" id="progress">85%</span> <i class="fa fa-thumbs-o-up fa-3x"></i>
-                        <progress value="85" max="100"></progress>
-            <span id="description">10 in a row! Best: 20</span>
+		<div id="voted">
+			<button class="circle habitIcon" id="money-edit" onclick="window.location.href ='./editHabitList.html'" ><i class="fa fa-money fa-5x"></i></button>
+			<div> 
+					<a href="editHabitList.html" id="progress">85%</a> <i class="fa fa-thumbs-o-up fa-3x"></i>
+                    <progress value="85" max="100"></progress>
+            		<span id="description">10 in a row! <span style="float:right;">Best: 20</span></span>
+        	</div>
 		</div>
 	</section>
+	<hr />
 	<section>
 		<div>
 			<p>Sleep 8 Hours</p>
@@ -26,10 +29,11 @@
 		</div>
 		<div>
 			<button class="circle habitIcon" id="sleep"><i class="fa fa-hotel fa-5x"></i></button>
-			<button class="circle voteBtn" id="yes"><i class="fa fa-thumbs-o-up fa-3x"></i></button>
-			<button class="circle voteBtn" id="no"><i class="fa fa-thumbs-o-down fa-3x"></i></button>
+			<button class="circle voteBtn yes"><i class="fa fa-thumbs-o-up fa-3x"></i></button>
+			<button class="circle voteBtn no"><i class="fa fa-thumbs-o-down fa-3x"></i></button>
 		</div>
 	</section>
+	<hr />
 	<section>
 		<div>
 			<p>Don't Bite Your Nails!!</p>
@@ -39,10 +43,12 @@
 		</div>
 		<div>
 			<button class="circle habitIcon" id="nails"><i class="fa fa-ban fa-5x"></i></button>
-			<button class="circle voteBtn" id="yes"><i class="fa fa-thumbs-o-up fa-3x"></i></button>
-			<button class="circle voteBtn" id="no"><i class="fa fa-thumbs-o-down fa-3x"></i></button>
+			<button class="circle voteBtn yes"><i class="fa fa-thumbs-o-up fa-3x"></i></button>
+			<button class="circle voteBtn no"><i class="fa fa-thumbs-o-down fa-3x"></i></button>
 		</div>
 	</section>
+	<hr />
+	<br>
 	<button class="circle addBtn" onclick="window.location.href ='./addHabit.html'"><i class="fa fa-plus fa-2x"></i></button>
 </body>
 </html>
