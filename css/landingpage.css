@@ -7,6 +7,7 @@ main {
     right: 0;
     margin: auto;
     text-align: center;
+    font-family: sans-serif;
 }
 
 hr {
@@ -19,7 +20,15 @@ hr {
 }
 
 button {
-	width: 20em;
+	width: 15em;
 	height: 3em;
 	margin: 3em;
+    background-color: #00bcd4;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+}
+
+i {
+    color: #FFFFFF
 }
