@@ -8,6 +8,17 @@ section > div {
 	width: 100%;
 }
 
+header{
+	background-color: rgb(152,152,152);
+	height: 1em;
+	text-align: center;
+	padding: 1em;
+}
+
+button{
+	color: black;
+}
+
 .circle {
 	border: 1px solid rgb(152,152,152);
 	background-color: rgb(240,240,240);
@@ -26,15 +37,11 @@ section > div {
 	text-align: center;
 }
 
-button{
-	color: black;
-}
-
 .addBtn {
-	width: 8em;
-	height: 8em;
+	width: 10em;
+	height: 10em;
 	border: none;
-	background-color: rgb(204,204,204);
+	color: white;
 }
 
 .daysOfWeek{
@@ -54,4 +61,10 @@ button{
 	height: 4em;
 	border: none;
 	background-color: rgb(180, 180, 180);
+}
+.close{
+	border: none;
+	background-color: transparent;
+	float: left;
+	padding: 0;
 }
