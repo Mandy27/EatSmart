@@ -10,4 +10,4 @@ The circle border centering about the "Times per day" is a bit off-set in Mozill
 The placeholder text in Safari and Internet Explorer dissappears when I click on the input box.
 
 votedHabitList.html
-The progress bar does not show up in Safari 5. Upgraded versions of Safari should have this element working, but Windows users are unable to updated beyond Safari 5, since Apple stopped developing for Windows.
+The progress bar does not show up in Safari 5. Upgraded versions of Safari should have this element working, but Windows users are unable to updated beyond Safari 5, since Apple stopped developing for Windows. 
