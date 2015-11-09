@@ -109,7 +109,22 @@
         function deleteHabit(element){
             var child = element.parentNode.parentNode;
             var parent = child.parentNode;
-            parent.removeChild(child);
+            //parent.removeChild(child);
+            //JQuery - child.fadeOut(300, function(){ $(this).remove();});
+
+            var opacity = 1; // intial opacity
+
+            // Do this every 25 ms - fade out item being deleted 
+            var countdown = setInterval(function(){
+                if (opacity < 0.1){
+                    parent.removeChild(child); 
+                }
+                child.style.opacity = opacity * 0.8; 
+                opacity = opacity * 0.8; 
+            }, 25); 
+
+            //Slide up animation for sibling nodes 
+            //parent.childNodes[]
         }
     </script>
 </body>
