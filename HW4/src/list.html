@@ -19,7 +19,7 @@
                     <span class="message-total">
                         <strong>2</strong> days in a row! Best Record: <strong>5</strong><br>
                         <svg height="25" width="150">
-                            <line x1="0" y1="0" x2="60" y2="0" style="stroke:rgba(65, 131, 215, 0.8);stroke-width:25" />
+                            <line class="progress" x1="0" y1="0" x2="60" y2="0" style="stroke:rgba(65, 131, 215, 0.8);stroke-width:25" />
                             <line x1="60" y1="0" x2="150" y2="0" style="stroke:rgba(171,171,171,0.6);stroke-width:25" />
                         </svg>
                     </span><br>
@@ -47,7 +47,7 @@
                     <span class="message-total">
                         <strong>10</strong> days in a row! Best Record: <strong>20</strong><br>
                         <svg height="25" width="150">
-                            <line x1="0" y1="0" x2="75" y2="0" style="stroke:rgba(65, 131, 215, 0.8);stroke-width:25" />
+                            <line class="progress" x1="0" y1="0" x2="75" y2="0" style="stroke:rgba(65, 131, 215, 0.8);stroke-width:25" />
                             <line x1="75" y1="0" x2="150" y2="0" style="stroke:rgba(171,171,171,0.6);stroke-width:25" />
                         </svg>
                     </span><br>
@@ -75,7 +75,7 @@
                     <span class="message-total">
                         <strong>48</strong> days in a row! Best Record: <strong>60</strong><br>
                         <svg height="25" width="150">
-                            <line x1="0" y1="0" x2="120" y2="0" style="stroke:rgba(65, 131, 215, 0.8);stroke-width:25" />
+                            <line class="progress" x1="0" y1="0" x2="120" y2="0" style="stroke:rgba(65, 131, 215, 0.8);stroke-width:25" />
                             <line x1="120" y1="0" x2="150" y2="0" style="stroke:rgba(171,171,171,0.6);stroke-width:25" />
                         </svg>
                     </span><br>
@@ -106,6 +106,34 @@
             var msgElement = (element.parentNode.parentNode.getElementsByClassName("message"))[0];
             // alert(msgElement.innerHTML);
             msgElement.style.visibility="visible";
+
+            //Progress bar animation 
+            //var bar1 = document.getElementsByClassName('progress');
+
+            var bar = element.parentNode.parentNode.getElementsByClassName('progress');
+
+            var oldx2 = bar[0].getAttribute('x2'); 
+
+            oldx2 = Number(oldx2) + 5;
+
+            //Animates from the beginning of the bar 
+            $(bar).animate(
+                {x2: oldx2+'px'}, 
+                {
+                    duration: 750, 
+                    step: function (now){ $(this).attr('x2', now); }
+                }
+            );
+
+            /* Animates from current location on the bar 
+            $({x2:oldx2}).animate(
+                {x2: (Number(oldx2) + 5) + 'px'},
+                {
+                    duration:200,
+                    step:function(now){$(bar).attr('x2', now);
+                }
+            });
+            */
         }
         
         function deleteHabit(element){
@@ -114,8 +142,7 @@
 
             var n = child.nextElementSibling;
 
-            child.style.position = 'relative'; 
-            n.style.position = 'relative';
+            //child.style.position = 'relative'; 
 
             /* Slides to the left of the screen to delete 
             $(child).animate({right: '1000px'}, 750, function(){ $(child).remove();}); 
@@ -125,7 +152,7 @@
             $(child).closest('li').slideUp('slow', function(){
                 $(child).remove(); 
             }); 
-            
+
             /* Fades out the child to delete
             $(child).fadeOut(500, function(){ $(this).remove();});
             */
