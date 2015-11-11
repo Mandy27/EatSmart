@@ -99,32 +99,36 @@
 
     <button type="button" id="addHabit" onclick="location.href='add.html'" title="add habit">+</button>
 
+    <script src="../js/jquery-1.11.3.min.js"></script>
+
     <script type="text/javascript">
         function showMsg(element){
             var msgElement = (element.parentNode.parentNode.getElementsByClassName("message"))[0];
             // alert(msgElement.innerHTML);
             msgElement.style.visibility="visible";
         }
-
+        
         function deleteHabit(element){
             var child = element.parentNode.parentNode;
             var parent = child.parentNode;
-            //parent.removeChild(child);
-            //JQuery - child.fadeOut(300, function(){ $(this).remove();});
 
-            var opacity = 1; // intial opacity
+            var n = child.nextElementSibling;
 
-            // Do this every 25 ms - fade out item being deleted 
-            var countdown = setInterval(function(){
-                if (opacity < 0.1){
-                    parent.removeChild(child); 
-                }
-                child.style.opacity = opacity * 0.8; 
-                opacity = opacity * 0.8; 
-            }, 25); 
+            child.style.position = 'relative'; 
+            n.style.position = 'relative';
 
-            //Slide up animation for sibling nodes 
-            //parent.childNodes[]
+            /* Slides to the left of the screen to delete 
+            $(child).animate({right: '1000px'}, 750, function(){ $(child).remove();}); 
+            */
+
+            /* Slides up to delete */
+            $(child).closest('li').slideUp('slow', function(){
+                $(child).remove(); 
+            }); 
+            
+            /* Fades out the child to delete
+            $(child).fadeOut(500, function(){ $(this).remove();});
+            */
         }
     </script>
 </body>
