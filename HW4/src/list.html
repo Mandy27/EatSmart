@@ -103,9 +103,10 @@
 
     <script type="text/javascript">
         function updateProgress(element){
-            var msgElement = (element.parentNode.parentNode.getElementsByClassName("message"))[0];
-            // alert(msgElement.innerHTML);
-            msgElement.style.visibility="visible";
+            var msgElement = (element.parentNode.parentNode.getElementsByClassName("message-today"))[0];
+            //alert(msgElement.innerHTML);
+            $(msgElement).animate({opacity: 1}, 300); 
+            //msgElement.style.visibility="visible";
 
             //Progress bar animation 
             var progress = element.parentNode.parentNode.getElementsByClassName('progress');
@@ -150,9 +151,8 @@
 
             var n = child.nextElementSibling;
 
-            //child.style.position = 'relative'; 
-
             /* Slides to the left of the screen to delete 
+            child.style.position = 'relative'; 
             $(child).animate({right: '1000px'}, 750, function(){ $(child).remove();}); 
             */
 
