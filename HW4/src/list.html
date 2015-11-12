@@ -102,6 +102,30 @@
     <script src="../js/jquery-1.11.3.min.js"></script>
 
     <script type="text/javascript">
+        $(window).load(function() {
+            var habitList = document.getElementById('habit-list').children;
+
+            for (var i = 0; i < habitList.length; i++){
+                console.log(habitList[i]);
+                habitList[i].style.opacity = 0; 
+                habitList[i].style.position = 'relative';
+                habitList[i].style.right = '1000px';
+            }
+            fadeallin(); 
+        });
+
+        function fadeallin(){
+            var habitList = document.getElementById('habit-list').children;
+            var delay = 0; 
+
+            for (var i = 0; i < habitList.length; i++){
+                habitList[i].style.opacity = 1; 
+                $(habitList[i]).delay(delay).animate({right: '0px'}, 750); 
+                delay+=100; 
+            }
+        }
+
+
         function updateProgress(element){
             var msgElement = (element.parentNode.parentNode.getElementsByClassName("message-today"))[0];
             //alert(msgElement.innerHTML);
@@ -180,6 +204,10 @@
                 else{
                     $(habitList[i]).delay(delay).animate({right: '1000px'}, 500, function(){window.location.href='add.html'}); 
                 }
+            }
+
+            if (habitList.length == 0){
+                window.location.href='add.html'; 
             }
         }
     </script>
