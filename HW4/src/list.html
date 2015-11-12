@@ -97,7 +97,7 @@
         </ul>
     </section>
 
-    <button type="button" id="addHabit" onclick="location.href='add.html'" title="add habit">+</button>
+    <button type="button" id="addHabit" onclick="pageTransition();" title="add habit">+</button>
 
     <script src="../js/jquery-1.11.3.min.js"></script>
 
@@ -145,11 +145,9 @@
             });
         }
         
-        function deleteHabit(element){
-            var child = element.parentNode.parentNode;
+        function deleteHabit(){
+            var child = document.getElementsByClassName()
             var parent = child.parentNode;
-
-            var n = child.nextElementSibling;
 
             /* Slides to the left of the screen to delete 
             child.style.position = 'relative'; 
@@ -164,6 +162,25 @@
             /* Fades out the child to delete
             $(child).fadeOut(500, function(){ $(this).remove();});
             */
+        }
+
+        function pageTransition(){
+            var habitList = document.getElementById('habit-list').children;
+            var delay = 0; 
+            //var n = child.nextElementSibling;
+            console.log(habitList); 
+            for (var i = 0; i < habitList.length; i++){
+                console.log(habitList[i]); 
+                /* Slides to the left of the screen to delete */
+                habitList[i].style.position = 'relative'; 
+                if (i != habitList.length - 1){
+                    $(habitList[i]).delay(delay).animate({right: '1000px'}, 500); 
+                    delay+=100; 
+                }
+                else{
+                    $(habitList[i]).delay(delay).animate({right: '1000px'}, 500, function(){window.location.href='add.html'}); 
+                }
+            }
         }
     </script>
 </body>
