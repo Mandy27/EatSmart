@@ -111,10 +111,10 @@
                 habitList[i].style.position = 'relative';
                 habitList[i].style.right = '1000px';
             }
-            fadeallin(); 
+            fadeAllIn(); 
         });
 
-        function fadeallin(){
+        function fadeAllIn(){
             var habitList = document.getElementById('habit-list').children;
             var delay = 0; 
 
@@ -124,7 +124,6 @@
                 delay+=100; 
             }
         }
-
 
         function updateProgress(element){
             var msgElement = (element.parentNode.parentNode.getElementsByClassName("message-today"))[0];
