@@ -3,6 +3,9 @@ function toggleReminder(){
 	$(".fa-chevron-right").toggleClass("fa-chevron-down");
 }
 
+<<<<<<< HEAD
+
+=======
 // function alldayCheckbox(){
 // 	if ($('#allday').prop('checked')) {
 // 		var temp = $('.timepicker');
@@ -34,3 +37,4 @@ function addHabit(){
 	  	setTimeout(n.close.bind(n), 3000); 
 	}
 }
+>>>>>>> ec714d4fec1fecd8305a41f8b5f9fb9669bc1cc9

@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../css/list.css">
+    <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script src="../js/list.js"></script>
 </head>
 <body>
     <section>
@@ -26,13 +29,20 @@
                     <span class="message-today">Completed <strong>1/1</strong> for today!</span>
                 </div>
                 <div class="habit-op">
+<<<<<<< HEAD
+                    <button type="button" id= "increment" class="op op-done" onclick="updateProgress(this);" title="done">
+                        <img src="../img/done.svg" alt="Done">
+                    </button>
+                    <button type="button" id="edit"class="op op-edit" onclick="location.href='edit.html'" title="edit habit">
+=======
                     <button type="button" class="op op-done" onclick="updateProgress(this);" title="done">
                         <img src="../img/done.svg" alt="Done">
                     </button>
                     <button type="button" class="op op-edit" onclick="editPageTransition()" title="edit habit">
+>>>>>>> ec714d4fec1fecd8305a41f8b5f9fb9669bc1cc9
                         <img src="../img/edit.svg" alt="Edit">
                     </button>
-                    <button type="button" class="op op-del" onclick="deleteHabit(this);" title="delete habit">
+                    <button type="button" id="delete" class="op op-del" onclick="deleteHabit(this);" title="delete habit">
                         <img src="../img/delete.svg" alt="Del">
                     </button>
                 </div>
@@ -97,6 +107,10 @@
         </ul>
     </section>
 
+<<<<<<< HEAD
+    <button type="button" id="addHabit" onclick="pageTransition();" title="add habit">+</button>
+        
+=======
     <button type="button" id="addHabit" onclick="addPageTransition();" title="add habit">+</button>
 
     <script src="../js/jquery-1.11.3.min.js"></script>
@@ -224,5 +238,6 @@
             }
         }
     </script>
+>>>>>>> ec714d4fec1fecd8305a41f8b5f9fb9669bc1cc9
 </body>
 </html>
