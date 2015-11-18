@@ -64,6 +64,8 @@
 		</div>
 	
 	<script>
+			//add error checking and validation
+
 			/* Page transitions */
 			$(window).load(function() { 
 			    $(document.body).animate({opacity: 1}, 750); 
@@ -71,6 +73,7 @@
 
 			$('#save').click(function pageTransition(){ 
     			$(document.body).animate({opacity: 0}, 750, function(){window.location.href='list.html'}); 
+
 			}); 
 
 			function selectImage(name) {
@@ -81,6 +84,18 @@
 				var image = document.getElementById(name);
 				image.style.border = "5px solid #42A5F5";
 			}
+
+			//add new habit to Firebase
+			var ref = new Firebase('https://burning-heat-9490.firebaseio.com/');
+       
+        	$('#save').click(function createHabit(){
+        		
+	        	var newHabit = ref.child('habits');
+	        		newHabit.update({
+	        		"Title": "Exercise"
+	        	});
+	        });
+
 		</script> 
 	</body>
 </html>
