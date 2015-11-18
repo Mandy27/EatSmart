@@ -19,13 +19,17 @@
 	  <script src="../js/jquery-1.11.3.min.js"></script>
 
 	  <script>
+	    /* Page Transitions */
 		$(window).load(function() {
             var welcome = document.getElementsByClassName('welcome')[0];
-            console.log(welcome); 
             welcome.style.opacity = 0; 
             
             $(welcome).animate({opacity: 1}, 500); 
         });
+
+        $('.addButton').click(function pageTransition(){ 
+    		$(document.body).animate({opacity: 0}, 500, function(){window.location.href='add.html'}); 
+		}); 
 	  </script>
 	</body> 
 </html>

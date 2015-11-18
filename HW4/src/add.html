@@ -43,7 +43,19 @@
 			</form>
 
 		</div>
+		<script src="../js/jquery-1.11.3.min.js"></script>
 		<script>
+			/* Page transitions */
+			$(window).load(function() { 
+			    document.body.style.opacity = 0; 
+			    
+			    $(document.body).animate({opacity: 1}, 750); 
+			});
+
+			$('#save').click(function pageTransition(){ 
+    			$(document.body).animate({opacity: 0}, 750, function(){window.location.href='add.html'}); 
+			}); 
+
 			function selectImage(name) {
 				//Clear all the other effects
 				document.getElementById('icon1').style.border = "none";
