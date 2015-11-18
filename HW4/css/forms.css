@@ -84,8 +84,10 @@ img.icon{
   p{
 	color:#6c6c6c;
 	font-size: small;
-	}	
-  
+	}
+  .text-format {
+  	font-size: small;
+  }
 }
 
 h2{
@@ -138,9 +140,11 @@ input#save:hover{
 }
 p#save_p{
 	text-align: center;
+	margin-top:20px;
 }
 form{
 	padding-left: 25px;
+	padding-right: 25px;
 	padding-bottom: 20px;
 }
 div label input {
@@ -223,5 +227,53 @@ span#times{
 #daily-button input:hover + span {
     cursor: pointer;
 }
-
-
+.timepicker{
+	margin-right: 5px;
+	height: 26px;
+	font-size: medium;
+}
+#alertOptions{
+	margin-right: 10px;
+	font-size: medium;
+}
+.hide{
+	display: none;
+}
+.showblock{
+	display: block;
+}
+.showinline{
+	display: inline;
+}
+.reminderDivShow{
+	display: block;
+	margin-top:20px;
+	margin-bottom: 10px;
+}
+#reminder{
+	-webkit-appearance:none;
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 5px;
+	background: none;
+	border: none;
+	font-size: medium;
+	background-color: rgb(228,228,228);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: left;
+	color:#6c6c6c;
+}
+#reminder:focus{
+	outline: none;
+}
+#reminder i{
+	float: right;
+}
+.fa-chevron-down{
+	content: "\f058";
+}
+.hideTimepicker {
+	color: grey;
+}
