@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../css/list.css">
     <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script src="../js/jquery-1.11.3.min.js"></script>
     <script src="../js/list.js"></script>
 </head>
 <body>
@@ -31,7 +31,6 @@
                 <div class="habit-op">
                     <button type="button" id= "increment" class="op op-done" onclick="updateProgress(this);" title="done">
                         <img src="../img/done.svg" alt="Done">
-                    </button>
                     </button>
                     <button type="button" class="op op-edit" onclick="editPageTransition()" title="edit habit">
                         <img src="../img/edit.svg" alt="Edit">
@@ -106,10 +105,10 @@
     <script src="../js/jquery-1.11.3.min.js"></script>
     <script src="../js/Sortable.min.js"></script>
 
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         var el = document.getElementById('habit-list');
         var sortable = Sortable.create(el);
-
+        
         $(window).load(function() {
             var habitList = document.getElementById('habit-list').children;
 
@@ -231,6 +230,6 @@
                 window.location.href='add.html'; 
             }
         }
-    </script>
+    </script> -->
 </body>
 </html>
