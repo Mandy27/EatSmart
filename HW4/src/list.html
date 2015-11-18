@@ -29,10 +29,17 @@
                     <span class="message-today">Completed <strong>1/1</strong> for today!</span>
                 </div>
                 <div class="habit-op">
+<<<<<<< HEAD
                     <button type="button" id= "increment" class="op op-done" onclick="updateProgress(this);" title="done">
                         <img src="../img/done.svg" alt="Done">
                     </button>
                     <button type="button" id="edit"class="op op-edit" onclick="location.href='edit.html'" title="edit habit">
+=======
+                    <button type="button" class="op op-done" onclick="updateProgress(this);" title="done">
+                        <img src="../img/done.svg" alt="Done">
+                    </button>
+                    <button type="button" class="op op-edit" onclick="editPageTransition()" title="edit habit">
+>>>>>>> ec714d4fec1fecd8305a41f8b5f9fb9669bc1cc9
                         <img src="../img/edit.svg" alt="Edit">
                     </button>
                     <button type="button" id="delete" class="op op-del" onclick="deleteHabit(this);" title="delete habit">
@@ -60,7 +67,7 @@
                     <button type="button" class="op op-done" onclick="updateProgress(this);" title="done">
                         <img src="../img/done.svg" alt="Done">
                     </button>
-                    <button type="button" class="op op-edit" onclick="location.href='edit.html'" title="edit habit">
+                    <button type="button" class="op op-edit" onclick="editPageTransition()" title="edit habit">
                         <img src="../img/edit.svg" alt="Edit">
                     </button>
                     <button type="button" class="op op-del" onclick="deleteHabit(this);" title="delete habit">
@@ -88,7 +95,7 @@
                     <button type="button" class="op op-done" onclick="updateProgress(this);" title="done">
                         <img src="../img/done.svg" alt="Done">
                     </button>
-                    <button type="button" class="op op-edit" onclick="location.href='edit.html'" title="edit habit">
+                    <button type="button" class="op op-edit" onclick="editPageTransition()" title="edit habit">
                         <img src="../img/edit.svg" alt="Edit">
                     </button>
                     <button type="button" class="op op-del" onclick="deleteHabit(this);" title="delete habit">
@@ -100,7 +107,137 @@
         </ul>
     </section>
 
+<<<<<<< HEAD
     <button type="button" id="addHabit" onclick="pageTransition();" title="add habit">+</button>
         
+=======
+    <button type="button" id="addHabit" onclick="addPageTransition();" title="add habit">+</button>
+
+    <script src="../js/jquery-1.11.3.min.js"></script>
+
+    <script type="text/javascript">
+        $(window).load(function() {
+            var habitList = document.getElementById('habit-list').children;
+
+            for (var i = 0; i < habitList.length; i++){
+                habitList[i].style.opacity = 0; 
+                habitList[i].style.position = 'relative';
+                habitList[i].style.right = '1000px';
+            }
+            fadeAllIn(); 
+        });
+
+        function fadeAllIn(){
+            var habitList = document.getElementById('habit-list').children;
+            var delay = 0; 
+
+            for (var i = 0; i < habitList.length; i++){
+                habitList[i].style.opacity = 1; 
+                $(habitList[i]).delay(delay).animate({right: '0px'}, 750); 
+                delay+=100; 
+            }
+        }
+
+        function updateProgress(element){
+            var msgElement = (element.parentNode.parentNode.getElementsByClassName("message-today"))[0];
+            //alert(msgElement.innerHTML);
+            $(msgElement).animate({opacity: 1}, 300); 
+            //msgElement.style.visibility="visible";
+
+            //Progress bar animation 
+            var progress = element.parentNode.parentNode.getElementsByClassName('progress');
+            var oldx2 = progress[0].getAttribute('x2'); 
+
+            var bar = element.parentNode.parentNode.getElementsByClassName('bar');
+            var oldx1 = bar[0].getAttribute('x1'); 
+
+            /*Animates from the beginning of the bar 
+            oldx2 = Number(oldx2) + 5;
+            $(bar).animate(
+                {x2: oldx2+'px'}, 
+                {
+                    duration: 750, 
+                    step: function (now){ $(bar).attr('x2', now); }
+                }
+            );*/
+
+            // Animates from current location on the bar 
+            $({x2:oldx2}).animate(
+                {x2: (Number(oldx2) + 5) + 'px'},
+                {
+                    duration:200,
+                    step:function(now){$(progress).attr('x2', now);
+                    queue: false; 
+                }
+            });
+
+            $({x1:oldx1}).animate(
+                {x1: (Number(oldx1) + 5) + 'px'},
+                {
+                    duration:200,
+                    step:function(now){$(bar).attr('x1', now);
+                    queue: false; 
+                }
+            });
+        }
+        
+        function deleteHabit(element){
+            var child = element.parentNode.parentNode;
+            var parent = child.parentNode;
+
+            /* Slides to the left of the screen to delete 
+            child.style.position = 'relative'; 
+            $(child).animate({right: '1000px'}, 750, function(){ $(child).remove();}); 
+            */
+
+            /* Slides up to delete */
+            $(child).closest('li').slideUp('slow', function(){
+                $(child).remove(); 
+            }); 
+
+            /* Fades out the child to delete
+            $(child).fadeOut(500, function(){ $(this).remove();});
+            */
+        }
+
+        function editPageTransition(){
+            var habitList = document.getElementById('habit-list').children;
+            var delay = 0; 
+            //var n = child.nextElementSibling;
+            console.log(habitList); 
+            for (var i = 0; i < habitList.length; i++){
+                console.log(habitList[i]); 
+                /* Slides to the left of the screen to delete */
+                habitList[i].style.position = 'relative'; 
+                if (i != habitList.length - 1){
+                    $(habitList[i]).delay(delay).animate({right: '1500px'}, 500); 
+                    delay+=100; 
+                }
+                else{
+                    $(habitList[i]).delay(delay).animate({right: '1500px'}, 500, function(){window.location.href='edit.html'}); 
+                }
+            }
+        }
+
+        function addPageTransition(){
+            var habitList = document.getElementById('habit-list').children;
+            var delay = 0; 
+            for (var i = 0; i < habitList.length; i++){
+                habitList[i].style.position = 'relative'; 
+                if (i != habitList.length - 1){
+                    $(habitList[i]).delay(delay).animate({right: '1500px'}, 500); 
+                    delay+=100; 
+                }
+                else{
+                    $(habitList[i]).delay(delay).animate({right: '1500px'}, 500, function(){window.location.href='add.html'}); 
+                }
+            }
+
+            if (habitList.length == 0){
+                window.location.href='add.html'; 
+            }
+        }
+    </script>
+>>>>>>> ec714d4fec1fecd8305a41f8b5f9fb9669bc1cc9
 </body>
 </html>

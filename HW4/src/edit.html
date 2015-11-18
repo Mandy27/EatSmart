@@ -7,13 +7,6 @@
 		<link rel="stylesheet" href="../css/forms.css">
 	</head>
 	<body>
-		<script>
-			function onStart() {
-            	document.getElementById("icon3").style.border="5px solid #42A5F5";
-
-			}
-			window.onload = onStart;
-		</script>
 		<div class="forms">
 			<h2>Edit A Habit</h2>
 			<form>
@@ -49,7 +42,22 @@
 			</form>
 
 		</div>
+		<script src="../js/jquery-1.11.3.min.js"></script>
 		<script>
+			/* Page transitions */
+			$(window).load(function() { 
+			    document.body.style.opacity = 0; 
+			    
+			    $(document.body).animate({opacity: 1}, 750, function(){
+			    	document.getElementById("icon3").style.border="5px solid #42A5F5";
+
+			    }); 
+			});
+
+			$('#save').click(function pageTransition(){ 
+    			$(document.body).animate({opacity: 0}, 750, function(){window.location.href='list.html'}); 
+			}); 
+
 			function selectImage(name) {
 				//Clear all the other effects
 				document.getElementById('icon1').style.border = "none";
