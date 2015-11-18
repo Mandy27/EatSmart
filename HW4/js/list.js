@@ -55,39 +55,37 @@
                  queue: false; 
              }
          });
-
-        //keep track of clicks 
-        /*var incrementProgress = new Firebase('https://burning-heat-9490.firebaseio.com/');
-            
-        //creates a new, incremental record
-        $('#increment').on('click', incrementId);
+        } 
 
         var errorId = 0;
-        //creates a new, incremental record
         function incrementId(){
+            //keep track of clicks 
+            var incrementProgress = new Firebase('https://burning-heat-9490.firebaseio.com/');
             //increment the counter
-            incrementProgress.child('counter').transaction(function(currentValue){
+            incrementProgress.child('progressCounter').transaction(function(currentValue){
                 return (currentValue || 0) + 1
-            }, function(err, committed, ss){
-                    if(err){
-                        setError(err);
-                    }
-                    else if(committed){
-                        //if update succeeds, then create a record
-                        addRecord(ss.val());
-                    }
-                });
-            }
-
-        //create new incremental record
-        function addRecord(id) {
-            setTimeout(function() {
-                incrementProgress.child('records').child('rec'+id).set('record #'+id, function(err) {
-                    err && setError(err);
-                });        
             });
-        }*/
-     }
+        }   
+
+    /*function(err, committed, ss){
+                 if(err){
+                     setError(err);
+                 }
+                 else if(committed){
+                     //if update succeeds, then create a record
+                     addRecord(ss.val());
+                 }
+             });
+         }
+
+     //create new incremental record
+     function addRecord(id) {
+         setTimeout(function() {
+             incrementProgress.child('records').child('rec'+id).set('record #'+id, function(err) {
+                 err && setError(err);
+             });        
+         });
+     }*/
      
      function deleteHabit(element){
          var child = element.parentNode.parentNode;

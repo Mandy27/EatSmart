@@ -54,7 +54,7 @@
 						<option value="5">Every 5 hour</option>
 					</select>
 					<!-- <input type="checkbox" name="allday" value="allday" id="allday" onclick="alldayCheckbox()">All day</input> -->
-					<label><span class="text-format"> between </span><input class="timepicker" type="time" name="time" value="11:59"></label>
+					<label><span class="text-format"> between </span><input class="timepicker" type="time" name="time" value="00:00"></label>
 					<label><span class="text-format">and </span><input class="timepicker" type="time" name="time" value="23:59"></label>
 				</div>
 
@@ -88,8 +88,7 @@
 			//add new habit to Firebase
 			var ref = new Firebase('https://burning-heat-9490.firebaseio.com/');
        
-        	$('#save').click(function createHabit(){
-        		
+        		$('#save').click(function createHabit(){	
 	        	var newHabit = ref.child('habits');
 	        		newHabit.update({
 	        		"Title": "Exercise"

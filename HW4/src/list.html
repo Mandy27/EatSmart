@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../css/list.css">
     <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
     <script src="../js/jquery-1.11.3.min.js"></script>
-    <script src="../js/Sortabl.min.js"></script>
+    <script src="../js/Sortable.min.js"></script>
     <script src="../js/list.js"></script>
 </head>
 <body>
@@ -30,7 +30,7 @@
                     <span class="message-today">Completed <strong>1/1</strong> for today!</span>
                 </div>
                 <div class="habit-op">
-                    <button type="button" id= "increment" class="op op-done" onclick="updateProgress(this);" title="done">
+                    <button type="button" id= "increment" class="op op-done" onclick="updateProgress(this); incrementId(this)" title="done">
                         <img src="../img/done.svg" alt="Done">
                     </button>
                     <button type="button" class="op op-edit" onclick="editPageTransition()" title="edit habit">
@@ -102,9 +102,6 @@
     </section>
 
     <button type="button" id="addHabit" onclick="addPageTransition();" title="add habit">+</button>
-
-    <script src="../js/jquery-1.11.3.min.js"></script>
-    <script src="../js/Sortable.min.js"></script>
 
     <!--<script type="text/javascript">
         var el = document.getElementById('habit-list');
