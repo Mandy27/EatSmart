@@ -1,4 +1,8 @@
-$(window).load(function() {
+    /* Sortable list items */
+    var el = document.getElementById('habit-list');
+    var sortable = Sortable.create(el);
+
+    $(window).load(function() {
      var habitList = document.getElementById('habit-list').children;
     
          for (var i = 0; i < habitList.length; i++){

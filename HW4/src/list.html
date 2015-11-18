@@ -102,7 +102,13 @@
 
     <button type="button" id="addHabit" onclick="addPageTransition();" title="add habit">+</button>
 
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/Sortable.min.js"></script>
+
     <!--<script type="text/javascript">
+        var el = document.getElementById('habit-list');
+        var sortable = Sortable.create(el);
+        
         $(window).load(function() {
             var habitList = document.getElementById('habit-list').children;
 
