@@ -55,7 +55,7 @@
 					<label><span class="text-format">and </span><input class="timepicker" type="time" name="time" value="23:59"></label>
 				</div>
 
-				<p id="save_p"><input id="save" type="button" value="Save It" onclick="addHabit()"></p>
+				<p id="save_p"><input id="save" type="button" value="Save It"></p>
 			</form>
 			
 		</div>
@@ -66,13 +66,11 @@
 		<script>
 			/* Page transitions */
 			$(window).load(function() { 
-			    document.body.style.opacity = 0; 
-			    
 			    $(document.body).animate({opacity: 1}, 750); 
 			});
 
 			$('#save').click(function pageTransition(){ 
-    			$(document.body).animate({opacity: 0}, 750, function(){window.location.href='add.html'}); 
+    			$(document.body).animate({opacity: 0}, 750, function(){window.location.href='list.html'}); 
 			}); 
 
 			function selectImage(name) {

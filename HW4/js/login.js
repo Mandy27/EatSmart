@@ -10,8 +10,6 @@ $('.signUpButton').one('click', function onClickSignUp() {
 }); 
 
 $(window).load(function() { 
-    document.body.style.opacity = 0; 
-
     $(document.body).animate({opacity: 1}, 750); 
 });
 
