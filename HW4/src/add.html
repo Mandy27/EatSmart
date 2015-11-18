@@ -42,25 +42,20 @@
 
 				<button id="reminder" onclick="toggleReminder()" type="button">Reminder <i class="fa fa-chevron-right"></i></button>
 				<div class="hide">
-					<div>
-						<select name="alert-options" id="alertOptions">
-							<option value="0">None</option>
-							<option value="1">Every 1 hour</option>
-							<option value="2">Every 2 hour</option>
-							<option value="3">Every 3 hour</option>
-							<option value="4">Every 4 hour</option>
-							<option value="5">Every 5 hour</option>
-						</select>
-						<input type="checkbox" name="allday" value="allday" id="allday" onclick="alldayCheckbox()">All day</input>
-					</div>
-					<br>
-					<div>
-						<label><span class="text-format"> between </span><input class="timepicker" type="time" name="time"></label>
-						<label><span class="text-format">and </span><input class="timepicker" type="time" name="time"></label>
-					</div>
+					<select name="alert-options" id="alertOptions">
+						<option value="0">None</option>
+						<option value="1">Every 1 hour</option>
+						<option value="2">Every 2 hour</option>
+						<option value="3">Every 3 hour</option>
+						<option value="4">Every 4 hour</option>
+						<option value="5">Every 5 hour</option>
+					</select>
+					<!-- <input type="checkbox" name="allday" value="allday" id="allday" onclick="alldayCheckbox()">All day</input> -->
+					<label><span class="text-format"> between </span><input class="timepicker" type="time" name="time" value="11:59"></label>
+					<label><span class="text-format">and </span><input class="timepicker" type="time" name="time" value="23:59"></label>
 				</div>
 
-				<p id="save_p"><input id="save" type="submit" value="Save It" onclick="location.href='list.html'"></p>
+				<p id="save_p"><input id="save" type="button" value="Save It" onclick="addHabit()"></p>
 			</form>
 			
 		</div>
