@@ -106,7 +106,6 @@
             var habitList = document.getElementById('habit-list').children;
 
             for (var i = 0; i < habitList.length; i++){
-                console.log(habitList[i]);
                 habitList[i].style.opacity = 0; 
                 habitList[i].style.position = 'relative';
                 habitList[i].style.right = '1000px';
@@ -197,11 +196,11 @@
                 /* Slides to the left of the screen to delete */
                 habitList[i].style.position = 'relative'; 
                 if (i != habitList.length - 1){
-                    $(habitList[i]).delay(delay).animate({right: '1000px'}, 500); 
+                    $(habitList[i]).delay(delay).animate({right: '1500px'}, 500); 
                     delay+=100; 
                 }
                 else{
-                    $(habitList[i]).delay(delay).animate({right: '1000px'}, 500, function(){window.location.href='add.html'}); 
+                    $(habitList[i]).delay(delay).animate({right: '1500px'}, 500, function(){window.location.href='add.html'}); 
                 }
             }
 
