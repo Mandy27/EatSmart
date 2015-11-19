@@ -89,10 +89,15 @@
 			var ref = new Firebase('https://burning-heat-9490.firebaseio.com/');
        
         		$('#save').click(function createHabit(){	
-	        	var newHabit = ref.child('habits');
+	        	var newHabit = ref.child('Habits');
 	        		newHabit.update({
-	        		"Title": "Exercise"
+	        		"Title": "Exercise",
 	        	});
+	        		newHabit.child('attributes').update({
+	        		"Weekly Frequency": "Monday",
+	        		"Daily Frequency": "3",
+	        		"Reminder": "X times per day"
+	        		});
 	        });
 
 		</script> 

@@ -57,9 +57,9 @@
          });
         } 
 
+        // //keep track of habit progress 
         var errorId = 0;
         function incrementId(){
-            //keep track of clicks 
             var incrementProgress = new Firebase('https://burning-heat-9490.firebaseio.com/');
             //increment the counter
             incrementProgress.child('progressCounter').transaction(function(currentValue){
