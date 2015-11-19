@@ -6,8 +6,9 @@
 		<title>Add a habit</title>
 		<link rel="stylesheet" href="../css/forms.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
 	</head>
-	<body>
+	<body onload="reminder()">
 
 		<div class="forms">
 			<h2>Add A Habit</h2>
@@ -52,7 +53,7 @@
 					</select>
 					<!-- <input type="checkbox" name="allday" value="allday" id="allday" onclick="alldayCheckbox()">All day</input> -->
 					<label><span class="text-format"> between </span><input class="timepicker" type="time" name="time" value="11:59"></label>
-					<label><span class="text-format">and </span><input class="timepicker" type="time" name="time" value="23:59"></label>
+					<label><span class="text-format">and </span><input class="timepicker " type="time" name="time" value="23:59"></label>
 				</div>
 
 				<p id="save_p"><input id="save" type="button" value="Save It" onclick="addHabit()"></p>
@@ -61,6 +62,7 @@
 		</div>
 		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="../js/add.js"></script>
+		<script src="../js/notification.js"></script>
 		<script>
 			function selectImage(name) {
 				//Clear all the other effects
