@@ -90,16 +90,31 @@
 			var ref = new Firebase('https://burning-heat-9490.firebaseio.com/');
        	
        		var habitTitle = $('#title');
-       		var weeklyFreq = $('#ck-button');
        		var dailyFreq = $('#others');
+       		var weeklyFreqArray = [];
+
+       		//if weeklyFreq is checked, store value into an array of strings
+       		$('#ck-button').click(function addWeeklyFreq(){
+       			var input = document.getElementById("ck-button");
+       			for(var i = 0; i < input.length; i++)
+       				//if(inputs[i].getElementByValue = true) //how do you check an element has been clicked??
+       					weeklyFreqArray.push(input[i].value);
+       			return weeklyFreqArray;
+
+			 	//weeklyFreqArray.push($('#ck-button').value);
+			 	 //console.log(weeklyFreq.length);
+			});
        		
+       		//on save, send data into firebase
        		$('#save').click(function createHabit(){
        			var newHabit = ref.child('Habits');
        			//store habit values
        			var title = habitTitle.val();
        			var daily = dailyFreq.val();
+       			var weekly = weeklyFreqArray.toString(); //convert array to string
+       			
        				//push habit values into Firebase
-       				newHabit.push({title:title, daily_frequency:daily});
+       				newHabit.push({title:title, daily_frequency:daily, weekly_frequency:weekly});
        		});
 
 		</script> 
