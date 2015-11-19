@@ -21,6 +21,7 @@
   	$(".fa-chevron-right").toggleClass("fa-chevron-down");
   }
   
+  
   // function alldayCheckbox(){
   // 	if ($('#allday').prop('checked')) {
   // 		var temp = $('.timepicker');
