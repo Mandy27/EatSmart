@@ -6,11 +6,13 @@
 		<title>Add a habit</title>
 		<link rel="stylesheet" href="../css/forms.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
 		<script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
 		<script src="../js/jquery-1.11.3.min.js"></script>
 		<script src="../js/add.js"></script>
+		<script src="../js/notification.js"></script>
 	</head>
-	<body>
+	<body onload="reminder()">
 
 		<div class="forms">
 			<h2>Add A Habit</h2>
@@ -54,7 +56,6 @@
 						<option value="4">Every 4 hour</option>
 						<option value="5">Every 5 hour</option>
 					</select>
-					<!-- <input type="checkbox" name="allday" value="allday" id="allday" onclick="alldayCheckbox()">All day</input> -->
 					<label><span class="text-format"> between </span><input class="timepicker" type="time" name="time" value="00:00"></label>
 					<label><span class="text-format">and </span><input class="timepicker" type="time" name="time" value="23:59"></label>
 				</div>
@@ -63,7 +64,6 @@
 			</form>
 			
 		</div>
-	
 	<script>
 			//add error checking and validation
 
