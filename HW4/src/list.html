@@ -38,7 +38,7 @@
         var delay = 0; 
         
         //create habit
-        habitList.prepend(
+        var children = habitList.prepend(
             '<li >' +
                 '<ul class="habit-info">' +
                     '<li><div class="habit-name">' + title + '</div></li>' +
@@ -65,7 +65,7 @@
                     '</button>' +
                 '<div>' +
             '</li>'
-        ).children().animate({right: '0px'}, 750);;
+        ).children().animate({right: '0px'}, 750);
     });
 
 </script>
