@@ -71,6 +71,10 @@ function updateProgress(element, int) {
 
 /* Transition animations when a habit is deleted */
 function deleteHabit(element) {
+    console.log(element.value);
+    var ref = new Firebase('https://burning-heat-9490.firebaseio.com/');
+    var habit = ref.child('Habits');
+    habit.child(element.value).remove();
     var child = element.parentNode.parentNode;
     var parent = child.parentNode;
 
