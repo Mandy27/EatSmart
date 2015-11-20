@@ -1,6 +1,7 @@
 # EatSmart
 ####Implemented Features:
 - Create Habit and add in Firebase database. (By Harrison)
+- Edit Habit and save in database (By Mandy)
 - Implemented Online Notification without using any library (By Mandy Ngo , Tyler Nguyen)
 
 ####Notes:
