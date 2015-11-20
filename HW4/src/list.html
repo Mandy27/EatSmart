@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../css/list.css">
     <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+    <script src="https://cdnjs.buttflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
     <script src="../js/jquery-1.11.3.min.js"></script>
     <script src="../js/Sortable.min.js"></script>
     <script src="../js/list.js"></script>
@@ -21,11 +21,8 @@
     <button type="button" id="addHabit" onclick="addPageTransition();" title="add habit">+</button>
 
 <script type="text/javascript">
-
     var dataRef = new Firebase('https://burning-heat-9490.firebaseio.com/Habits');
-
     var habitList = $('#habit-list');
-
     /* Fetch habit list data */
     dataRef.on('child_added', function (snapshot) {
         // get data
@@ -38,7 +35,7 @@
         var delay = 0; 
         
         //create habit
-        var children = habitList.prepend(
+        habitList.prepend(
             '<li >' +
                 '<ul class="habit-info">' +
                     '<li><div class="habit-name">' + title + '</div></li>' +
@@ -67,7 +64,6 @@
             '</li>'
         ).children().animate({right: '0px'}, 750);
     });
-
 </script>
 </body>
 </html>

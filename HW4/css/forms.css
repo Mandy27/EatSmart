@@ -172,6 +172,7 @@ div label input {
     background-color:#EFEFEF;
     float:left;
     width:4.0em;
+        width: 56px;
 }
 
 #ck-button label span {
