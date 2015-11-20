@@ -13,7 +13,6 @@
 		<script src="../js/notification.js"></script>
 	</head>
 	<body onload="reminder()">
-
 		<div class="forms">
 			<h2>Add A Habit</h2>
 			<form>
@@ -27,13 +26,13 @@
 				
 				<p><label>Weekly Frequency</label></p>
 				<div id="ck-button">
-					<label> <input type="checkbox" name="date" value="sunday"><span>Sun</span></label>
-					<label> <input type="checkbox" name="date" value="monday"><span>Mon</span></label>
-					<label> <input type="checkbox" name="date" value="tuesday"><span>Tues</span></label>
-					<label> <input type="checkbox" name="date" value="wednesday"><span>Wed</span></label>
-					<label> <input type="checkbox" name="date" value="thursday"><span>Thur</span></label>
-					<label> <input type="checkbox" name="date" value="friday"><span>Fri</span></label>
-					<label> <input type="checkbox" name="date" value="saturday"><span>Sat</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="sunday"><span>Sun</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="monday"><span>Mon</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="tuesday"><span>Tues</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="wednesday"><span>Wed</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="thursday"><span>Thur</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="friday"><span>Fri</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="saturday"><span>Sat</span></label>
 				</div>
 		
 				<p><label>Daily Frequency</label></p>
@@ -91,32 +90,48 @@
        	
        		var habitTitle = $('#title');
        		var dailyFreq = $('#others');
-       		var weeklyFreqArray = [];
 
-       		//if weeklyFreq is checked, store value into an array of strings
+
+       		//if weeklyFreq is clicked, store value into an array of strings
+       		/*
        		$('#ck-button').click(function addWeeklyFreq(){
-       			var input = document.getElementById("ck-button");
+       			var input = $("input[name = 'date']");
        			for(var i = 0; i < input.length; i++)
-       				//if(inputs[i].getElementByValue = true) //how do you check an element has been clicked??
-       					weeklyFreqArray.push(input[i].value);
+       				if(inputs[i].getElementByValue = true) //how do you check an element has been clicked??
+       				weeklyFreqArray.push(input[i].value);
        			return weeklyFreqArray;
+			});*/
 
-			 	//weeklyFreqArray.push($('#ck-button').value);
-			 	 //console.log(weeklyFreq.length);
-			});
+			//store reminder information, including "time_interval", "from", and "to"
+				/*alert-options').click(function addReminder(){
+				var list = $('#alertOptions');
+				selected = list.options[list.selectedIndex].value;
+			});*/
        		
        		//on save, send data into firebase
        		$('#save').click(function createHabit(){
+   				var weeklyFreqArray = [];
+				var weekdays = document.getElementsByClassName('days'); 
+
+	       		for (var i = 0; i < weekdays.length; i++){
+	       			console.log(weekdays.length); 
+	       			if (weekdays[i].checked){
+	       				weeklyFreqArray.push(weekdays[i].value);
+	       				console.log(weekdays[i].value); 
+	       			}
+	       		}
+       			
        			var newHabit = ref.child('Habits');
        			//store habit values
        			var title = habitTitle.val();
        			var daily = dailyFreq.val();
        			var weekly = weeklyFreqArray.toString(); //convert array to string
+       			//var interval = selected.val();
        			
-       				//push habit values into Firebase
-       				newHabit.push({title:title, daily_frequency:daily, weekly_frequency:weekly});
+   				//push habit values into Firebase
+   				newHabit.push({title:title, daily_frequency:daily, weekly_frequency:weekly /*time_interval:interval*/});
        		});
 
-		</script> 
+		</script>
 	</body>
 </html>
