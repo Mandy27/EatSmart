@@ -2,7 +2,7 @@
 ####Implemented Features:
 - Create Habit and add in Firebase database. ( by Harrison )
 - Edit Habit and save in database ( by Mandy Ngo )
-- Delete Habit and save in database ( by Mandy Ngo )
+- Delete Habit, confirmation pop-up, save in database ( by Mandy Ngo )
 - UI focused JavaScript ( by Christy Lao )
 - Implemented Online Notification without using any library ( by Mandy Ngo , Tyler Nguyen)
 
