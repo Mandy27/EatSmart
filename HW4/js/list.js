@@ -36,8 +36,7 @@ var habitList = $('#habit-list');
         habitList[i].style.position = 'relative';
         habitList[i].style.right = '1000px';
     }
-    
-<<<<<<< HEAD
+
     // Add transition
     fadeAllIn(); 
 });*/
