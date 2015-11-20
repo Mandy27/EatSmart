@@ -1,33 +1,7 @@
-/* Display habit list */
-$(window).load(function () {
-    var habitList = document.getElementById('habit-list').children;
-
-    for (var i = 0; i < habitList.length; i++){
-        habitList[i].style.opacity = 0; 
-        habitList[i].style.position = 'relative';
-        habitList[i].style.right = '1000px';
-    }
-
-    // Add transition
-    fadeAllIn(); 
-});
-
 function displayHabits (name, text) {
     $('<div/>').text(text).prepend($('<em/>').text(title+': ')).appendTo($('#messagesDiv'));
     $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
 };
-
-/* Fade-in transition */
-function fadeAllIn() {
-    var habitList = document.getElementById('habit-list').children;
-    var delay = 0;
-
-    for (var i = 0; i < habitList.length; i++){
-        habitList[i].style.opacity = 1; 
-        $(habitList[i]).delay(delay).animate({right: '0px'}, 750); 
-        delay+=100; 
-    }
-}
 
 function updateProgress(element, int) {
     var msgElement = (element.parentNode.parentNode.getElementsByClassName("message-today"))[0];
@@ -140,7 +114,7 @@ function incrementId(){
 function editPageTransition(id){
     var habitList = document.getElementById('habit-list').children;
     var delay = 0; 
-    //var n = child.nextElementSibling;
+
     for (var i = 0; i < habitList.length; i++){
         
         //Slides to the left of the screen to delete 
@@ -161,8 +135,8 @@ function editPageTransition(id){
 function addPageTransition(){
     var habitList = document.getElementById('habit-list').children;
     var delay = 0; 
+
     for (var i = 0; i < habitList.length; i++){
-        habitList[i].style.position = 'relative'; 
         if (i != habitList.length - 1){
             $(habitList[i]).delay(delay).animate({right: '1500px'}, 500); 
             delay+=100; 
