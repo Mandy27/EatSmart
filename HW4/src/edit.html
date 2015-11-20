@@ -49,8 +49,23 @@
 						<option value="10">10</option>
 					</select>
 				</div>
-			
+
 				<p></p>
+			
+			<button id="reminder" onclick="toggleReminder()" type="button">Reminder <i class="fa fa-chevron-right"></i></button>
+				<div class="hide">
+					<select name="alert-options" id="alertOptions">
+						<option value="0">None</option>
+						<option value="1">Every 1 hour</option>
+						<option value="2">Every 2 hour</option>
+						<option value="3">Every 3 hour</option>
+						<option value="4">Every 4 hour</option>
+						<option value="5">Every 5 hour</option>
+					</select>
+					<label><span class="text-format"> between </span><input class="timepicker" type="time" name="time" value="00:00"></label>
+					<label><span class="text-format">and </span><input class="timepicker" type="time" name="time" value="23:59"></label>
+				</div>
+				
 				<p id="save_p"><input id="save" type="button" value="Save It"></p>
 				
 			</form>
@@ -123,7 +138,7 @@
        			var start = hours[0].value; 
        			var end = hours[1].value; 
 
-       			editHabit.push({title:title, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
+       			editHabit.update({title:title, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
        		});
 
 		</script>
