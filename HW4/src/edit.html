@@ -58,15 +58,16 @@
 		</div>
 		<script src="../js/jquery-1.11.3.min.js"></script>
 		<script>
+			//add error checking and validation
+
 			/* Page transitions */
 			$(window).load(function() { 
-			    $(document.body).animate({opacity: 1}, 750, function(){
-			    	document.getElementById("icon3").style.border="5px solid #42A5F5";
-			    }); 
+			    $(document.body).animate({opacity: 1}, 750); 
 			});
 
 			$('#save').click(function pageTransition(){ 
     			$(document.body).animate({opacity: 0}, 750, function(){window.location.href='list.html'}); 
+
 			}); 
 
 			function selectImage(name) {
@@ -80,37 +81,51 @@
 
 			//add new habit to Firebase
 			var ref = new Firebase('https://burning-heat-9490.firebaseio.com/');
-       	
-       		var habitTitle = $('#title');
-       		var dailyFreq = $('#daily-button');
-			var reminder = 
-
-			//store reminder information, including "time_interval", "from", and "to"
-				/*alert-options').click(function addReminder(){
-				var list = $('#alertOptions');
-				selected = list.options[list.selectedIndex].value;
-			});*/
        		
        		//on save, send data into firebase
        		$('#save').click(function editHabit(){
+       			//weekly frequency
        			var weeklyFreqArray = [];
                 var weekdays = document.getElementsByClassName('days'); 
 
                 for (var i = 0; i < weekdays.length; i++){
-                       console.log(weekdays.length); 
                        if (weekdays[i].checked){
                               weeklyFreqArray.push(weekdays[i].value);
-                              console.log(weekdays[i].value); 
                        }
-                }			                           
+                }
+                     
+                // Title
+                var title = $('#title').val();       
        			var editHabit = ref.child('Habits');
-       			//store habit values
-       			var title = habitTitle.val();
-       			var daily = dailyFreq.val();
-       			
-       			//push habit values into Firebase
-       			editHabit.update({title:title, daily_frequency:daily, weekly_frequency:weeklyFreqArray /*time_interval:interval*/});
+
+       			// Daily Frequency 
+       			var dailyoption = document.getElementById('dailyOptions'); 
+       			var options = dailyoption.children; 
+
+       			for (var i = 0; i < options.length; i++){
+       				if (options[i].selected){
+       					var daily = options[i].value; 
+       				}
+       			}
+
+       			//Reminders: Time Interval 
+       			var reminders = document.getElementById('alertOptions'); 
+       			var reminderOptions = reminders.children; 
+
+       			for (var i = 0; i < reminderOptions.length; i++){
+       				if (reminderOptions[i].selected){
+       					var interval = reminderOptions[i].value; 
+       				}
+       			}
+
+       			//Reminders: Start time and finish time 
+       			var hours = document.getElementsByClassName('timepicker'); 
+       			var start = hours[0].value; 
+       			var end = hours[1].value; 
+
+       			editHabit.push({title:title, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
        		});
+
 		</script>
 	</body>
 </html>
