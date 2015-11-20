@@ -71,17 +71,19 @@ function updateProgress(element, int) {
 
 /* Transition animations when a habit is deleted */
 function deleteHabit(element) {
-    console.log(element.value);
     var ref = new Firebase('https://burning-heat-9490.firebaseio.com/');
     var habit = ref.child('Habits');
-    habit.child(element.value).remove();
-    var child = element.parentNode.parentNode;
-    var parent = child.parentNode;
+    var flag = confirm("Are you sure you want to delete the habit?");
+    if(flag === true){
+        habit.child(element.value).remove();
+        var child = element.parentNode.parentNode;
+        var parent = child.parentNode;
 
-     ///Slides up to delete 
-     $(child).closest('li').slideUp('slow', function(){
-         $(child).remove(); 
-     }); 
+         ///Slides up to delete 
+         $(child).closest('li').slideUp('slow', function(){
+             $(child).remove(); 
+         });
+    }
 }
 
 // keep track of habit progress 
