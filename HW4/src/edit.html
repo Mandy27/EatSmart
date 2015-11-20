@@ -5,38 +5,52 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Edit a habit</title>
 		<link rel="stylesheet" href="../css/forms.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+		<script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+		<script src="../js/jquery-1.11.3.min.js"></script>
 	</head>
 	<body>
 		<div class="forms">
 			<h2>Edit A Habit</h2>
 			<form>
 				<p><label><span id="title_text">Habit Title</span></label></p>
-				<p><input id="title" type="text" name="fullname" value="Exercise 30 minutes"></p>
+				<p><input id="title" type="text" name="fullname" value="Your Habit"></p>
 				<p><label>Habit Icon</label></p>
 				<img id="icon1" class="icon" onclick="selectImage('icon1');" src="../img/sleep.jpg" alt="sleep image"/>
 				<img id="icon2" class="icon" onclick="selectImage('icon2');" src="../img/salad.jpg" alt="eat image"/>
 				<img id="icon3" class="icon" onclick="selectImage('icon3');" src="../img/run.jpg" alt="run image"/>
 				<img class="icon" src="../img/add.png" alt="find a image"/>
+				
 				<p><label>Weekly Frequency</label></p>
 				<div id="ck-button">
-					<label> <input type="checkbox" name="date" value="0" checked><span>Sun</span></label>
-					<label> <input type="checkbox" name="date" value="1"><span>Mon</span></label>
-					<label> <input type="checkbox" name="date" value="2" checked><span>Tues</span></label>
-					<label> <input type="checkbox" name="date" value="3"><span>Wed</span></label>
-					<label> <input type="checkbox" name="date" value="4" checked><span>Thur</span></label>
-					<label> <input type="checkbox" name="date" value="5"><span>Fri</span></label>
-					<label> <input type="checkbox" name="date" value="6"><span>Sat</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="0" checked><span>Sun</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="1"><span>Mon</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="2" checked><span>Tues</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="3"><span>Wed</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="4" checked><span>Thur</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="5"><span>Fri</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="6"><span>Sat</span></label>
 				</div>
 		
 		
-				<p><label>Daily Frequency</label></p>
-				<div id="daily-button">
-					<label> <input type="checkbox" name="day" value="one"><span>1</span></label>
-					<label> <input type="checkbox" name="day" value="two"><span>2</span></label>
-					<label> <input type="checkbox" name="day" value="three" checked><span>3</span></label>
-					<span id="times">times</span>
+					<p><label>Daily Frequency</label></p>
+				<div id="daily-button" class= "dropdown">
+				<select name="daily-options" class="btn btn-default dropdown-toggle" type= "button" id="dailyOptions">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+					</select>
 				</div>
-				<p><label><span id="others_text">Others: </span><input id="others" type="text" name="day" placeholder="More than 3 times"></label></p>
+			
+				<p></p>
 				<p id="save_p"><input id="save" type="button" value="Save It"></p>
 				
 			</form>
@@ -63,6 +77,40 @@
 				var image = document.getElementById(name);
 				image.style.border = "5px solid #42A5F5";
 			}
+
+			//add new habit to Firebase
+			var ref = new Firebase('https://burning-heat-9490.firebaseio.com/');
+       	
+       		var habitTitle = $('#title');
+       		var dailyFreq = $('#daily-button');
+			var reminder = 
+
+			//store reminder information, including "time_interval", "from", and "to"
+				/*alert-options').click(function addReminder(){
+				var list = $('#alertOptions');
+				selected = list.options[list.selectedIndex].value;
+			});*/
+       		
+       		//on save, send data into firebase
+       		$('#save').click(function editHabit(){
+       			var weeklyFreqArray = [];
+                var weekdays = document.getElementsByClassName('days'); 
+
+                for (var i = 0; i < weekdays.length; i++){
+                       console.log(weekdays.length); 
+                       if (weekdays[i].checked){
+                              weeklyFreqArray.push(weekdays[i].value);
+                              console.log(weekdays[i].value); 
+                       }
+                }			                           
+       			var editHabit = ref.child('Habits');
+       			//store habit values
+       			var title = habitTitle.val();
+       			var daily = dailyFreq.val();
+       			
+       			//push habit values into Firebase
+       			editHabit.update({title:title, daily_frequency:daily, weekly_frequency:weeklyFreqArray /*time_interval:interval*/});
+       		});
 		</script>
 	</body>
 </html>

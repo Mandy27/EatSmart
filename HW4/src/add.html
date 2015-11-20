@@ -99,6 +99,7 @@
        	
        		var habitTitle = $('#title');
        		var dailyFreq = $('#daily-button');
+			var reminder = 
 
 			//store reminder information, including "time_interval", "from", and "to"
 				/*alert-options').click(function addReminder(){
@@ -117,17 +118,14 @@
                               weeklyFreqArray.push(weekdays[i].value);
                               console.log(weekdays[i].value); 
                        }
-                }
-                            
+                }			                           
        			var newHabit = ref.child('Habits');
        			//store habit values
        			var title = habitTitle.val();
        			var daily = dailyFreq.val();
-       			var weekly = weeklyFreqArray.toString(); //convert array to string
-       			//var interval = selected.val();
        			
        			//push habit values into Firebase
-       			newHabit.push({title:title, daily_frequency:daily, weekly_frequency:weekly /*time_interval:interval*/});
+       			newHabit.push({title:title, daily_frequency:daily, weekly_frequency:weeklyFreqArray /*time_interval:interval*/});
        		});
 
 		</script> 
