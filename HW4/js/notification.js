@@ -4,6 +4,7 @@
 var data = [];
 var count = 1;
 getData();
+
 function getData(){
 	var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
 	var result;
@@ -19,12 +20,18 @@ function parseData(){
 	for(var i = 0; i< data.length; i++){
 			var from = toSecond(data[i].from);
 			var to = toSecond(data[i].to);
-			data[i].next_reminder_time = calculateNextTime(currentTime, from, to, data[i].time_interval);
+			if(checkDayInterval(data[i]) != -1){
+				data[i].next_reminder_time = calculateNextTime(currentTime, from, to, data[i].time_interval);
+			}
+			else {
+				data[i].next_reminder_time = 30*3600;
+			}
 	}
 	data = _.sortBy(data, 'next_reminder_time');
 }
 
 function reminder(){
+
 	if(data.length){
 		if(count > 0){
 			count--;
@@ -41,9 +48,20 @@ function reminder(){
 		  	spawnNotification(theBody,theIcon,theTitle);
 		  	item.next_reminder_time = calculateNextTime(currentTime,item.from, item.to, item.time_interval);
 		  	data.push(item);
+		  	data = _.sortBy(data, 'next_reminder_time');
 		}  
 	}
 	setTimeout(reminder, 500);
+}
+function checkDayInterval(data){
+	var d = new Date();
+    var day = d.getDay();
+
+	var checkDay =_.findIndex(data.weekly_frequency, function(d) {
+  		return d == day;
+	});
+    return checkDay;
+
 }
 function spawnNotification(theBody,theIcon,theTitle) {
 	var options = {

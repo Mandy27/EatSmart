@@ -9,6 +9,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
 		<script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
 		<script src="../js/jquery-1.11.3.min.js"></script>
+		<script src="../js/add.js"></script>
 		<script src="../js/notification.js"></script>
 	</head>
 	<body onload="reminder()">
@@ -16,7 +17,7 @@
 			<h2>Edit A Habit</h2>
 			<form>
 				<p><label><span id="title_text">Habit Title</span></label></p>
-				<p><input id="title" type="text" name="fullname" value="Your Habit"></p>
+				<p><input id="title" type="text" name="fullname"></p>
 				<p><label>Habit Icon</label></p>
 				<img id="icon1" class="icon" onclick="selectImage('icon1');" src="../img/sleep.jpg" alt="sleep image"/>
 				<img id="icon2" class="icon" onclick="selectImage('icon2');" src="../img/salad.jpg" alt="eat image"/>
@@ -74,7 +75,38 @@
 		</div>
 		<script src="../js/jquery-1.11.3.min.js"></script>
 		<script>
-			//add error checking and validation
+			var key = window.location.href;
+			key = key.substring(key.indexOf("?") + 1);			// Get id of the habit needed edit
+			var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
+			var result;
+			ref.on("value", function(snapshot) {
+			   	var data = snapshot.val().Habits[key];
+			   	$("#title")[0].value = data.title;
+			   	var weekdays = document.getElementsByClassName('days');
+			   	_.each(weekdays,function(d){
+                	if(_.indexOf(data.weekly_frequency,Number(d.value)) != -1){
+                		d.checked = true;
+                	}
+                	else{
+                		d.checked = false;
+                	}
+			   	});
+			   	_.each($("#dailyOptions")[0], function(d){
+			   		if(Number(d.value) == data.daily_frequency){
+			   			d.selected = true;
+			   		}
+			   	});
+			   	_.each($("#alertOptions")[0], function(d){
+			   		if(Number(d.value) == data.time_interval){
+			   			d.selected = true;
+			   		}
+			   	});
+			   	var timepicker = document.getElementsByClassName('timepicker');
+			   	timepicker[0].value = data.from;
+			   	timepicker[1].value = data.to;
+
+			}, function (errorObject) {
+			});
 
 			/* Page transitions */
 			$(window).load(function() { 
@@ -95,7 +127,6 @@
 				image.style.border = "5px solid #42A5F5";
 			}
 
-			//add new habit to Firebase
 			var ref = new Firebase('https://burning-heat-9490.firebaseio.com/');
        		
        		//on save, send data into firebase
@@ -139,7 +170,7 @@
        			var start = hours[0].value; 
        			var end = hours[1].value; 
 
-       			editHabit.update({title:title, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
+       			editHabit.child(key).set({title:title, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
        		});
 
 		</script>

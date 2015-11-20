@@ -62,7 +62,7 @@
                     '<button type="button" id= "increment" class="op op-done" onclick="updateProgress(this,' + dailycounter + ');" title="done">' +
                         '<img src="../img/done.svg" alt="Done">' +
                     '</button>' +
-                    '<button type="button" class="op op-edit" onclick="editPageTransition()" title="edit habit">' +
+                    '<button type="button" class="op op-edit" onclick="editPageTransition(this.id)" title="edit habit" id='+snapshot.key()+'>' +
                         '<img src="../img/edit.svg" alt="Edit">' +
                     '</button>' +
                     '<button type="button" id="delete" class="op op-del" onclick="deleteHabit(this)" title="delete habit">' +

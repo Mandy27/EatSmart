@@ -1,60 +1,3 @@
-/* Display habit list */
-//$(window).load(
-    /*
-    var delay = 0; 
-function slideIn(){
-    $(this).style.opacity = 1; 
-    $(this).animate({right: '0px'}, 750); 
-}*/
-    //var habitLists = document.getElementsByClassName('habit-item'); 
-
-    //console.log(habitLists.length); 
-
-    /*for (var i = 0; i < habitLists.length; i++){  
-        habitList[i].style.opacity = 1; 
-        $(habitList[i]).delay(delay).animate({right: '0px'}, 750); 
-        delay+=100; 
-}*/
-//function slideIn() {
-    //var habitList = document.getElementById('habit-list').children.length;
-    /*
-    var habitList = $('#habit-list').children()['prevObject'][0]['children']; 
-
-
-    console.log("slide");
-    console.log(habitList);
-
-    var j = 0; 
-
-    console.log(habitList.length);
-/*
-    for (child in habitList){
-        console.log(child); 
-        child.style.opacity = 1; 
-        $(child).delay(delay).animate({right: '0px'}, 750); 
-        delay+=100; 
-    }
-*/
-/*
-    for (var j = 0; j < habitList.length; j++){
-        console.log("loop");
-        habitList[j].style.opacity = 1; 
-        $(habitList[j]).delay(delay).animate({right: '0px'}, 750); 
-        delay+=100; 
-    }
-    console.log("end"); 
-
-    /*
-    var habitList = document.getElementById('habit-list').children;
-    console.log(habitList);
-
-    for (var i = 0; i < habitList.length; i++){
-        habitList[i].style.right = '1500px';
-    }
-
-    // Add transition*/
-//}); 
-
 function displayHabits (name, text) {
     $('<div/>').text(text).prepend($('<em/>').text(title+': ')).appendTo($('#messagesDiv'));
     $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
@@ -170,11 +113,14 @@ function incrementId(){
  }*/
 
 /* Transition animations on navigating to the edit page */
-function editPageTransition(){
+function editPageTransition(id){
     var habitList = document.getElementById('habit-list').children;
     var delay = 0; 
 
     for (var i = 0; i < habitList.length; i++){
+        
+        //Slides to the left of the screen to delete 
+        habitList[i].style.position = 'relative'; 
         
         if (i != habitList.length - 1){
             $(habitList[i]).delay(delay).animate({right: '1500px'}, 500); 
@@ -182,7 +128,7 @@ function editPageTransition(){
         }
         
         else{
-            $(habitList[i]).delay(delay).animate({right: '1500px'}, 500, function(){window.location.href='edit.html'}); 
+            $(habitList[i]).delay(delay).animate({right: '1500px'}, 500, function(){window.location.href='edit.html?'+id}); 
         }
     }
 }
