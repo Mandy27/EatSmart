@@ -1,33 +1,64 @@
 /* Display habit list */
-$(window).load(function () {
+//$(window).load(
+    /*
+    var delay = 0; 
+function slideIn(){
+    $(this).style.opacity = 1; 
+    $(this).animate({right: '0px'}, 750); 
+}*/
+    //var habitLists = document.getElementsByClassName('habit-item'); 
+
+    //console.log(habitLists.length); 
+
+    /*for (var i = 0; i < habitLists.length; i++){  
+        habitList[i].style.opacity = 1; 
+        $(habitList[i]).delay(delay).animate({right: '0px'}, 750); 
+        delay+=100; 
+}*/
+//function slideIn() {
+    //var habitList = document.getElementById('habit-list').children.length;
+    /*
+    var habitList = $('#habit-list').children()['prevObject'][0]['children']; 
+
+
+    console.log("slide");
+    console.log(habitList);
+
+    var j = 0; 
+
+    console.log(habitList.length);
+/*
+    for (child in habitList){
+        console.log(child); 
+        child.style.opacity = 1; 
+        $(child).delay(delay).animate({right: '0px'}, 750); 
+        delay+=100; 
+    }
+*/
+/*
+    for (var j = 0; j < habitList.length; j++){
+        console.log("loop");
+        habitList[j].style.opacity = 1; 
+        $(habitList[j]).delay(delay).animate({right: '0px'}, 750); 
+        delay+=100; 
+    }
+    console.log("end"); 
+
+    /*
     var habitList = document.getElementById('habit-list').children;
+    console.log(habitList);
 
     for (var i = 0; i < habitList.length; i++){
-        habitList[i].style.opacity = 0; 
-        habitList[i].style.position = 'relative';
-        habitList[i].style.right = '1000px';
+        habitList[i].style.right = '1500px';
     }
 
-    // Add transition
-    fadeAllIn(); 
-});
+    // Add transition*/
+//}); 
 
 function displayHabits (name, text) {
     $('<div/>').text(text).prepend($('<em/>').text(title+': ')).appendTo($('#messagesDiv'));
     $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
 };
-
-/* Fade-in transition */
-function fadeAllIn() {
-    var habitList = document.getElementById('habit-list').children;
-    var delay = 0;
-
-    for (var i = 0; i < habitList.length; i++){
-        habitList[i].style.opacity = 1; 
-        $(habitList[i]).delay(delay).animate({right: '0px'}, 750); 
-        delay+=100; 
-    }
-}
 
 function updateProgress(element, int) {
     var msgElement = (element.parentNode.parentNode.getElementsByClassName("message-today"))[0];
@@ -103,6 +134,8 @@ function deleteHabit(element) {
      ///Slides up to delete 
      $(child).closest('li').slideUp('slow', function(){
          $(child).remove(); 
+         var childKey = child.key(); 
+         console.log(childKey);
      }); 
 }
 
@@ -140,12 +173,8 @@ function incrementId(){
 function editPageTransition(){
     var habitList = document.getElementById('habit-list').children;
     var delay = 0; 
-    //var n = child.nextElementSibling;
+
     for (var i = 0; i < habitList.length; i++){
-        console.log(habitList[i]); 
-        
-        //Slides to the left of the screen to delete 
-        habitList[i].style.position = 'relative'; 
         
         if (i != habitList.length - 1){
             $(habitList[i]).delay(delay).animate({right: '1500px'}, 500); 
@@ -162,8 +191,8 @@ function editPageTransition(){
 function addPageTransition(){
     var habitList = document.getElementById('habit-list').children;
     var delay = 0; 
+
     for (var i = 0; i < habitList.length; i++){
-        habitList[i].style.position = 'relative'; 
         if (i != habitList.length - 1){
             $(habitList[i]).delay(delay).animate({right: '1500px'}, 500); 
             delay+=100; 
