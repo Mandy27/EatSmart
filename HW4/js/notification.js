@@ -17,9 +17,9 @@ function parseData(){
 	var today = new Date();
 	var currentTime = toSecond(today.getHours()+":"+today.getMinutes());
 	for(var i = 0; i< data.length; i++){
-		var from = toSecond(data[i].from);
-		var to = toSecond(data[i].to);
-		data[i].next_reminder_time = calculateNextTime(currentTime, from, to, data[i].time_interval);
+			var from = toSecond(data[i].from);
+			var to = toSecond(data[i].to);
+			data[i].next_reminder_time = calculateNextTime(currentTime, from, to, data[i].time_interval);
 	}
 	data = _.sortBy(data, 'next_reminder_time');
 }
@@ -35,7 +35,7 @@ function reminder(){
 		if(currentTime == data[0].next_reminder_time){
 			var item = data.shift();
 			Notification.requestPermission();
-		  	var theBody = "It's time to complete "+item.title;
+			var theBody = "It's time to complete "+item.title;
 		  	var theIcon = "../img/logo.png";
 		  	var theTitle = "Virtue/Vice";
 		  	spawnNotification(theBody,theIcon,theTitle);
@@ -59,7 +59,7 @@ function toSecond(timeStr) {
  	return time;
 }
 function calculateNextTime(currTime, from, to, n){
-	if(currTime >= from && currTime <= to){
+	if(currTime >= from && currTime <= to ){
 		var nextTime = from;
 		var curr = currTime;
 		while(nextTime < curr){
