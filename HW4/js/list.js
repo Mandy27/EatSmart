@@ -58,7 +58,7 @@ var habitList = $('#habit-list');
     }
 }*/
 
-function updateProgress(element) {
+function updateProgress(element, int) {
      var msgElement = (element.parentNode.parentNode.getElementsByClassName("message-today"))[0];
      //alert(msgElement.innerHTML);
      $(msgElement).animate({opacity: 1}, 300); 
@@ -70,6 +70,9 @@ function updateProgress(element) {
 
      var bar = element.parentNode.parentNode.getElementsByClassName('bar');
      var oldx1 = bar[0].getAttribute('x1'); 
+    
+     int++;
+    console.log(int);
 
      // Animates from current location on the bar 
      $({x2:oldx2}).animate(
@@ -123,7 +126,7 @@ function updateProgress(element) {
     }
 }
 
-function deleteHabit(element, string) {
+function deleteHabit(element) {
     var child = element.parentNode.parentNode;
     var parent = child.parentNode;
 
@@ -143,7 +146,11 @@ function deleteHabit(element, string) {
                  queue: false; 
              }
          });*/
-} 
+}
+
+/*function deleteHabit (dataRef, snapshot) {
+    dataRef.remove();
+}*/
 
 // keep track of habit progress 
 var errorId = 0;

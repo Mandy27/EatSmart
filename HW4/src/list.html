@@ -33,6 +33,7 @@
         var data = snapshot.val();
         var title = data.title;
         var dailyfrequency = data.daily_frequency;
+        var dailycounter = 0;
         var daycounter = 10;
         var record = 20;
         
@@ -50,21 +51,25 @@
                             '<line class="bar" x1="60" y1="0" x2="150" y2="0" style="stroke:rgba(171,171,171,0.6);stroke-width:25" />' +
                         '</svg>' +
                     '</span><br>' +
-                    '<span class="message-today">Completed <strong>1/' + dailyfrequency + '</strong> for today!</span>' +
+                    '<span class="message-today">Completed <strong>' + dailycounter + '/' + dailyfrequency + '</strong> for today!</span>' +
                 '</div>' +
                 '<div class="habit-op">' +
-                    '<button type="button" id= "increment" class="op op-done" onclick="updateProgress(this);" title="done">' +
+                    '<button type="button" id= "increment" class="op op-done" onclick="updateProgress(this,' + dailycounter + ');" title="done">' +
                         '<img src="../img/done.svg" alt="Done">' +
                     '</button>' +
                     '<button type="button" class="op op-edit" onclick="editPageTransition()" title="edit habit">' +
                         '<img src="../img/edit.svg" alt="Edit">' +
                     '</button>' +
-                    '<button type="button" id="delete" class="op op-del" onclick="deleteHabit(this);" title="delete habit">' +
+                    '<button type="button" id="delete" class="op op-del" onclick="deleteHabit(this)" title="delete habit">' +
                         '<img src="../img/delete.svg" alt="Del">' + 
                     '</button>' +
                 '<div>' +
             '</li>'
         );
+    });
+    
+    dataRef.on('child_removed', function (snapshot) {
+        snapshot.remove(); 
     });
 </script>
     <!--<script type="text/javascript">
