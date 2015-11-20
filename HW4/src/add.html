@@ -104,14 +104,13 @@
 
                 for (var i = 0; i < weekdays.length; i++){
                        if (weekdays[i].checked){
-                              weeklyFreqArray.push(weekdays[i].value);
+                              weeklyFreqArray.push(Number(weekdays[i].value));
                        }
                 }
                      
                 // Title
                 var title = $('#title').val();       
        			var newHabit = ref.child('Habits');
-
        			// Daily Frequency 
        			var dailyoption = document.getElementById('dailyOptions'); 
        			var options = dailyoption.children; 

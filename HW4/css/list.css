@@ -22,7 +22,7 @@ body{
 
 .message{position:absolute; display:inline-block; text-align:center; color:#888;}
 .message-total>svg{margin: 15px auto;}
-.message-today{opacity: 0;}
+.message-today{opacity: 100;}
 
 /* operations (for a existing habit) */
 .habit-op{position:absolute; right:5px;display:inline-block; height: 100%; line-height: 60px;width:100%;text-align:center;top:170px;margin:0 auto;}

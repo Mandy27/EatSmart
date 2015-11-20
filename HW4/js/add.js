@@ -22,7 +22,9 @@ function addHabit(){
           document.getElementById('icon3').style.border = "none";
           var image = document.getElementById(name);
           image.style.border = "5px solid #42A5F5";
-        }*/
+
+        } */
+
   
   // function alldayCheckbox(){
   // 	if ($('#allday').prop('checked')) {
