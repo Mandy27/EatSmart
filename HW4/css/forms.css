@@ -17,10 +17,12 @@ body {
   margin: 0;
   opacity: 0;
 }
+
 p{
 	color:#6c6c6c;
 	font-size: medium;
 }	
+
 div.forms {
 	position: relative;
 	margin: 0 auto;
@@ -30,17 +32,20 @@ div.forms {
 	border-radius: 25px;
 	bottom: auto;
 }
+
 input#title{
 	height: 30px;
 	width: 350px;
 	font-size:medium;
 
 }
+
 input#others{
 	height: 30px;
 	width: 250px;
 	font-size:medium;
 }
+
 img.icon{
 	width: 80px;
 	height: 80px;
@@ -51,6 +56,7 @@ img.icon{
 	-webkit-transition: .3s ease-in-out;
 	transition: .3s ease-in-out;
 }
+
 @media (max-width: 500px) {
   div.forms {
   	position: relative;
@@ -60,17 +66,20 @@ img.icon{
 	background-color: white;
 	border-radius: 25px;
   }
-  input#title{
+  
+    input#title{
 	height: 30px;
 	width: 250px;
 	font-size:small;
   }
-  input#others{
+  
+    input#others{
 	height: 30px;
 	width: 250px;
 	font-size:small;
 
-}
+  }
+    
   img.icon{
 	width: 60px;
 	height: 60px;
@@ -103,18 +112,15 @@ h2{
 	text-shadow: 0px 0px 0px black;
 }
 
-
-
 img.icon:hover{
 	-webkit-transform: scale(1.3);
 	transform: scale(1.3);
 	cursor: pointer;
 }
+
 span#others_text{
 	padding-right: 5px;
 }
-
-
 
 input#save{
 	-webkit-appearance:none;
@@ -139,15 +145,18 @@ input#save{
 input#save:hover{
 	cursor: pointer;
 }
+
 p#save_p{
 	text-align: center;
 	margin-top:20px;
 }
+
 form{
 	padding-left: 25px;
 	padding-right: 25px;
 	padding-bottom: 20px;
 }
+
 div label input {
    margin-right:100px;
 }
@@ -171,7 +180,6 @@ div label input {
     display:block;
     /*border:1px solid #D0D0D0;*/
     overflow:auto;
-
 }
 
 #ck-button label input {
@@ -184,6 +192,7 @@ div label input {
     border-radius:5px;
     color:#fff;
 }
+
 #ck-button input:hover + span {
     cursor: pointer;
 }
@@ -212,7 +221,6 @@ span#times{
     display:block;
     /*border:1px solid #D0D0D0;*/
     overflow:auto;
-
 }
 
 #daily-button label input {
@@ -225,32 +233,40 @@ span#times{
     border-radius:25px;
     color:#fff;
 }
+
 #daily-button input:hover + span {
     cursor: pointer;
 }
+
 .timepicker{
 	margin-right: 5px;
 	height: 26px;
 	font-size: medium;
 }
+
 #alertOptions{
 	margin-right: 10px;
 	font-size: medium;
 }
+
 .hide{
 	display: none;
 }
+
 .showblock{
 	display: block;
 }
+
 .showinline{
 	display: inline;
 }
+
 .reminderDivShow{
 	display: block;
 	margin-top:10px;
 	margin-bottom: 10px;
 }
+
 #reminder{
 	-webkit-appearance:none;
 	width: 100%;
@@ -266,15 +282,19 @@ span#times{
 	text-align: left;
 	color:#6c6c6c;
 }
+
 #reminder:focus{
 	outline: none;
 }
+
 #reminder i{
 	float: right;
 }
+
 .fa-chevron-down{
 	content: "\f058";
 }
+
 .hideTimepicker {
 	color: grey;
 }
