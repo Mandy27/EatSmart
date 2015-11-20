@@ -137,12 +137,11 @@ function incrementId(){
  }*/
 
 /* Transition animations on navigating to the edit page */
-function editPageTransition(){
+function editPageTransition(id){
     var habitList = document.getElementById('habit-list').children;
     var delay = 0; 
     //var n = child.nextElementSibling;
     for (var i = 0; i < habitList.length; i++){
-        console.log(habitList[i]); 
         
         //Slides to the left of the screen to delete 
         habitList[i].style.position = 'relative'; 
@@ -153,7 +152,7 @@ function editPageTransition(){
         }
         
         else{
-            $(habitList[i]).delay(delay).animate({right: '1500px'}, 500, function(){window.location.href='edit.html'}); 
+            $(habitList[i]).delay(delay).animate({right: '1500px'}, 500, function(){window.location.href='edit.html?'+id}); 
         }
     }
 }
