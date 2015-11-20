@@ -1,6 +1,7 @@
 # EatSmart
 ####Implemented Features:
-- Create Habit and add in Firebase database. ( by Harrison )
+- Read habits from database and display in List page ( )
+- Create Habit and add in Firebase database. ( by Harrison Wang)
 - Edit Habit and save in database ( by Mandy Ngo )
 - Delete Habit, confirmation pop-up, save in database ( by Mandy Ngo )
 - UI focused JavaScript ( by Christy Lao )
