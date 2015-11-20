@@ -59,7 +59,7 @@ function toSecond(timeStr) {
  	return time;
 }
 function calculateNextTime(currTime, from, to, n){
-	if(currTime >= from && currTime <= to ){
+	if(currTime >= from && currTime <= to && n!=0){
 		var nextTime = from;
 		var curr = currTime;
 		while(nextTime < curr){
