@@ -1,5 +1,5 @@
 # EatSmart
-####Implemented Feature:
+####Implemented Features:
 - Create Habit. (By Harrison)
 - Implemented Online Notification (By Mandy Ngo , Tyler Nguyen).
 
