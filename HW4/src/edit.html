@@ -81,7 +81,6 @@
 			var result;
 			ref.on("value", function(snapshot) {
 			   	var data = snapshot.val().Habits[key];
-			   	console.log(data);
 			   	$("#title")[0].value = data.title;
 			   	var weekdays = document.getElementsByClassName('days');
 			   	_.each(weekdays,function(d){
@@ -105,6 +104,7 @@
 			   	var timepicker = document.getElementsByClassName('timepicker');
 			   	timepicker[0].value = data.from;
 			   	timepicker[1].value = data.to;
+
 			}, function (errorObject) {
 			});
 
@@ -127,7 +127,6 @@
 				image.style.border = "5px solid #42A5F5";
 			}
 
-			//add new habit to Firebase
 			var ref = new Firebase('https://burning-heat-9490.firebaseio.com/');
        		
        		//on save, send data into firebase
@@ -171,7 +170,7 @@
        			var start = hours[0].value; 
        			var end = hours[1].value; 
 
-       			editHabit.update({title:title, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
+       			editHabit.child(key).set({title:title, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
        		});
 
 		</script>
