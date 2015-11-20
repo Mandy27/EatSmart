@@ -95,46 +95,29 @@
 
 			//add new habit to Firebase
 			var ref = new Firebase('https://burning-heat-9490.firebaseio.com/');
-
-       		//if weeklyFreq is clicked, store value into an array of strings
-       		/*
-       		$('#ck-button').click(function addWeeklyFreq(){
-       			var input = $("input[name = 'date']");
-       			for(var i = 0; i < input.length; i++)
-       				if(inputs[i].getElementByValue = true) //how do you check an element has been clicked??
-       				weeklyFreqArray.push(input[i].value);
-       			return weeklyFreqArray;
-			});*/
-
-			//store reminder information, including "time_interval", "from", and "to"
-				/*alert-options').click(function addReminder(){
-				var list = $('#alertOptions');
-				selected = list.options[list.selectedIndex].value;
-			});*/
        		
        		//on save, send data into firebase
        		$('#save').click(function createHabit(){
-       			// Weekly Frequency 
-   				var weeklyFreqArray = [];
-				var weekdays = document.getElementsByClassName('days'); 
+       			//weekly frequency
+       			var weeklyFreqArray = [];
+                var weekdays = document.getElementsByClassName('days'); 
 
-	       		for (var i = 0; i < weekdays.length; i++){
-	       			if (weekdays[i].checked){
-	       				weeklyFreqArray.push(weekdays[i].value);
-	       			}
-	       		}
+                for (var i = 0; i < weekdays.length; i++){
+                       if (weekdays[i].checked){
+                              weeklyFreqArray.push(Number(weekdays[i].value));
+                       }
+                }
                      
                 // Title
                 var title = $('#title').val();       
        			var newHabit = ref.child('Habits');
-
        			// Daily Frequency 
        			var dailyoption = document.getElementById('dailyOptions'); 
        			var options = dailyoption.children; 
 
        			for (var i = 0; i < options.length; i++){
        				if (options[i].selected){
-       					var daily = options[i].value; 
+       					var daily = Number(options[i].value); 
        				}
        			}
 
@@ -144,7 +127,7 @@
 
        			for (var i = 0; i < reminderOptions.length; i++){
        				if (reminderOptions[i].selected){
-       					var interval = reminderOptions[i].value; 
+       					var interval = Number(reminderOptions[i].value); 
        				}
        			}
 
