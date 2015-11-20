@@ -137,13 +137,6 @@
        			var end = hours[1].value; 
 
        			newHabit.push({title:title, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
-
-       			newHabit.endAt().limit(1).on("child_added", function(habit){
- 					var habitID = habit.key(); 
- 					console.log(habitID);  				
-       			}); 
-
-
        		});
 
 		</script>

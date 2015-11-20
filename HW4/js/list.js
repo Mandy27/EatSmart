@@ -77,8 +77,6 @@ function deleteHabit(element) {
      ///Slides up to delete 
      $(child).closest('li').slideUp('slow', function(){
          $(child).remove(); 
-         var childKey = child.key(); 
-         console.log(childKey);
      }); 
 }
 
