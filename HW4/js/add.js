@@ -1,3 +1,11 @@
+function toggleReminder(){
+	$(".hide").toggleClass("reminderDivShow");
+	$(".fa-chevron-right").toggleClass("fa-chevron-down");
+}
+function addHabit(){
+ 	
+}
+
 /* Page transitions */
 /*$(window).load(function() { 
         $(document.body).animate({opacity: 1}, 750); 
@@ -14,12 +22,9 @@
           document.getElementById('icon3').style.border = "none";
           var image = document.getElementById(name);
           image.style.border = "5px solid #42A5F5";
+
         } */
-  
-function toggleReminder() {
-    $(".hide").toggleClass("reminderDivShow");
-    $(".fa-chevron-right").toggleClass("fa-chevron-down");
-}
+
   
   // function alldayCheckbox(){
   // 	if ($('#allday').prop('checked')) {
@@ -37,21 +42,4 @@ function toggleReminder() {
   // 		$('.text-format').removeClass('hideTimepicker');
   // 	}
   // }
-  
-  function addHabit(){
-   	Notification.requestPermission();
-    	var theBody = "Hi";
-    	var theIcon = "../img/logo.png";
-    	var theTitle = "Notification";
-    	spawnNotification(theBody,theIcon,theTitle);
-    	function spawnNotification(theBody,theIcon,theTitle) {
-    		var options = {
-    			body: theBody,
-    			icon: theIcon
-    		}
-  	  	var n = new Notification(theTitle,options);
-  	  	setTimeout(n.close.bind(n), 3000); 
-  	}
-  }
-
 

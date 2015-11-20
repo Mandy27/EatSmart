@@ -37,6 +37,7 @@ var habitList = $('#habit-list');
         habitList[i].style.right = '1000px';
     }
     
+<<<<<<< HEAD
     // Add transition
     fadeAllIn(); 
 });*/
@@ -123,7 +124,7 @@ function updateProgress(element) {
     }
 }
 
-/*function deleteHabit(element, string) {
+function deleteHabit(element, string) {
     var child = element.parentNode.parentNode;
     var parent = child.parentNode;
 
@@ -133,9 +134,46 @@ function updateProgress(element) {
      }); 
 
      //Fades out the child to delete
-     $(child).fadeOut(500, function(){ $(this).remove();});
-    
-    key.remove();
+     /*$(child).fadeOut(500, function(){ $(this).remove();});
+
+         $({x1:oldx1}).animate(
+             {x1: (Number(oldx1) + 5) + 'px'},
+             {
+                 duration:200,
+                 step:function(now){$(bar).attr('x1', now);
+                 queue: false; 
+             }
+         });*/
+} 
+
+// keep track of habit progress 
+var errorId = 0;
+function incrementId(){
+    var incrementProgress = new Firebase('https://burning-heat-9490.firebaseio.com/');
+    //increment the counter
+    incrementProgress.child('progressCounter').transaction(function(currentValue){
+        return (currentValue || 0) + 1
+    });
+}   
+
+/*function(err, committed, ss){
+             if(err){
+                 setError(err);
+             }
+             else if(committed){
+                 //if update succeeds, then create a record
+                 addRecord(ss.val());
+             }
+         });
+     }
+
+ //create new incremental record
+ function addRecord(id) {
+     setTimeout(function() {
+         incrementProgress.child('records').child('rec'+id).set('record #'+id, function(err) {
+             err && setError(err);
+         });        
+     });
  }*/
 
  function editPageTransition(){

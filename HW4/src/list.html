@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../css/list.css">
     <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
     <script src="../js/jquery-1.11.3.min.js"></script>
-    <script src="../js/Sortabl.min.js"></script>
+    <script src="../js/Sortable.min.js"></script>
     <script src="../js/list.js"></script>
 </head>
 <body>
@@ -18,67 +18,68 @@
 
     <button type="button" id="addHabit" onclick="addPageTransition();" title="add habit">+</button>
 
-    <script src="../js/jquery-1.11.3.min.js"></script>
-    <script src="../js/Sortable.min.js"></script>
 
-    <script type="text/javascript">
-        var dataRef = new Firebase('https://burning-heat-9490.firebaseio.com/Habits');
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../js/Sortable.min.js"></script>
 
-        var habitList = $('#habit-list');
+<script type="text/javascript">
+    var dataRef = new Firebase('https://burning-heat-9490.firebaseio.com/Habits');
 
-        /* Fetch habit list data */
-        dataRef.on('child_added', function (snapshot) {
-            // get data
-            var data = snapshot.val();
-            var title = data.title;
-            var dailyfrequency = data.daily_frequency;
-            var daycounter = 10;
-            var record = 20;
-            
-            console.log(title);
-            console.log(dailyfrequency);
+    var habitList = $('#habit-list');
 
-            // create elements
-            var habitElement = $("<li>");
-            var titleElement = $("<div class='habit-name'></div>");
-            var habitInfoElement = $("<ul class='habit-info></ul>");
-            var dailyElement = $("<strong>");
-            var counterElement = $("<strong>")
-            var recordElement = $("<strong>");
+    /* Fetch habit list data */
+    dataRef.on('child_added', function (snapshot) {
+        // get data
+        var data = snapshot.val();
+        var title = data.title;
+        var dailyfrequency = data.daily_frequency;
+        var daycounter = 10;
+        var record = 20;
 
-            // inject html
-            // title
-            titleElement.text(title);
-            //habitElement.text("message").prepend(titleElement);
-            //habitElement.text(dailyfrequency).prepend(titleElement);
-            habitElement.prepend(titleElement);
-            
-            // record counter
-            counterElement.text(daycounter);
-            recordElement.text(record);
-            habitElement.append(counterElement);
-            habitElement.append(" days in a row! Best Record: ");
-            habitElement.append(recordElement);
-            
-            // progress bar
-            habitElement.append(
-                "<span class='message-total'> <svg height='25' width='150'> <line class='progress' x1='0' y1='0' x2='75' y2='0'                           style='stroke:rgba(65, 131, 215, 0.8);stroke-width:25' /> <line class='bar' x1='75' y1='0' x2='150' y2='0'                                                       style='stroke:rgba(171,171,171,0.6);stroke-width:25' /> </svg> </span>"
-            );
-            
-            // daily frequency
-            habitElement.append("<span class='message-today'>Completed <strong>1/</strong>");
-            habitElement.append(dailyElement.text(dailyfrequency));
-            habitElement.append(" for today!</span>");
-            
-            // update, edit, and delete buttons
-            habitElement.append(
-                "<div class='habit-op'> <button type='button' id='increment' class='op op-done' onclick='updateProgress(this);' title='done'> <img                               src='../img/done.svg' alt='Done'> </button> <button type='button' class='op op-edit' onclick='editPageTransition()' title='edit habit'> <img                     src='../img/edit.svg' alt='Edit'> </button> <button type='button' id='delete' class='op op-del' onclick='deleteHabit(this);' title='delete                       habit'> <img src='../img/delete.svg' alt='Del'> </button> </div>"
-            );
+        console.log(title);
+        console.log(dailyfrequency);
 
-            // add habit
-            habitList.prepend(habitElement);
-        });
-    </script>
+        // create elements
+        var habitElement = $("<li>");
+        var titleElement = $("<div class='habit-name'></div>");
+        var habitInfoElement = $("<ul class='habit-info></ul>");
+        var dailyElement = $("<strong>");
+        var counterElement = $("<strong>")
+        var recordElement = $("<strong>");
+
+        // inject html
+        // title
+        titleElement.text(title);
+        //habitElement.text("message").prepend(titleElement);
+        //habitElement.text(dailyfrequency).prepend(titleElement);
+        habitElement.prepend(titleElement);
+
+        // record counter
+        counterElement.text(daycounter);
+        recordElement.text(record);
+        habitElement.append(counterElement);
+        habitElement.append(" days in a row! Best Record: ");
+        habitElement.append(recordElement);
+
+        // progress bar
+        habitElement.append(
+            "<span class='message-total'> <svg height='25' width='150'> <line class='progress' x1='0' y1='0' x2='75' y2='0'                                                 style='stroke:rgba(65, 131, 215, 0.8);stroke-width:25' /> <line class='bar' x1='75' y1='0' x2='150' y2='0'                                                       style='stroke:rgba(171,171,171,0.6);stroke-width:25' /> </svg> </span>"
+        );
+
+        // daily frequency
+        habitElement.append("<span class='message-today'>Completed <strong>1/</strong>");
+        habitElement.append(dailyElement.text(dailyfrequency));
+        habitElement.append(" for today!</span>");
+
+        // update, edit, and delete buttons
+        habitElement.append(
+            "<div class='habit-op'> <button type='button' id='increment' class='op op-done' onclick='updateProgress(this);' title='done'> <img                               src='../img/done.svg' alt='Done'> </button> <button type='button' class='op op-edit' onclick='editPageTransition()' title='edit habit'> <img                     src='../img/edit.svg' alt='Edit'> </button> <button type='button' id='delete' class='op op-del' onclick='deleteHabit(this);' title='delete                       habit'> <img src='../img/delete.svg' alt='Del'> </button> </div>"
+        );
+
+        // add habit
+        habitList.prepend(habitElement);
+    });
+</script>
     <!--<script type="text/javascript">
         var el = document.getElementById('habit-list');
         var sortable = Sortable.create(el);
