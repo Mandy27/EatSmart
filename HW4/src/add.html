@@ -95,19 +95,18 @@
 
 			//add new habit to Firebase
 			var ref = new Firebase('https://burning-heat-9490.firebaseio.com/');
-
        		
        		//on save, send data into firebase
        		$('#save').click(function createHabit(){
-       			// Weekly Frequency 
-   				var weeklyFreqArray = [];
-				var weekdays = document.getElementsByClassName('days'); 
+       			//weekly frequency
+       			var weeklyFreqArray = [];
+                var weekdays = document.getElementsByClassName('days'); 
 
-	       		for (var i = 0; i < weekdays.length; i++){
-	       			if (weekdays[i].checked){
-	       				weeklyFreqArray.push(weekdays[i].value);
-	       			}
-	       		}
+                for (var i = 0; i < weekdays.length; i++){
+                       if (weekdays[i].checked){
+                              weeklyFreqArray.push(Number(weekdays[i].value));
+                       }
+                }
                      
                 // Title
                 var title = $('#title').val();       
@@ -118,7 +117,7 @@
 
        			for (var i = 0; i < options.length; i++){
        				if (options[i].selected){
-       					var daily = options[i].value; 
+       					var daily = Number(options[i].value); 
        				}
        			}
 
@@ -128,7 +127,7 @@
 
        			for (var i = 0; i < reminderOptions.length; i++){
        				if (reminderOptions[i].selected){
-       					var interval = reminderOptions[i].value; 
+       					var interval = Number(reminderOptions[i].value); 
        				}
        			}
 
