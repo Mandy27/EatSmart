@@ -1,5 +1,6 @@
 // var data = [{"title":"Sleep 8 hours", "weekly_frequency":[1,3,5], "daily_frequency":1,"time_interval":1,"from":"2:27", "to":"5:30"},
 //  				{"title":"Bite nails", "weekly_frequency":[2,3,4], "daily_frequency":1,"time_interval":2, "from":"2:29", "to":"13:00"}];
+
 var data = [];
 var count = 1;
 getData();
