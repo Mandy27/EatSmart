@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Edit a habit</title>
+		<link rel="stylesheet" href="../css/forms.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+		<script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+		<script src="../js/jquery-1.11.3.min.js"></script>
+		<script src="../js/facebookAuthorization.js"></script>
+		<script src="../js/edit.js"></script>
+		<script src="../js/notification.js"></script>
+	</head>
+	<body onload="reminder()">
+		<div class="forms">
+			<h2>Edit A Habit</h2>
+			<form>
+				<p><label><span id="title_text">Habit Title</span></label></p>
+				<p><input id="title" type="text" name="fullname"></p>
+				<p><label>Habit Icon</label></p>
+				<img id="icon1" class="icon" onclick="selectImage('icon1');" src="../img/sleep.jpg" alt="sleep image"/>
+				<img id="icon2" class="icon" onclick="selectImage('icon2');" src="../img/salad.jpg" alt="eat image"/>
+				<img id="icon3" class="icon" onclick="selectImage('icon3');" src="../img/run.jpg" alt="run image"/>
+				<img class="icon" src="../img/add.png" alt="find a image"/>
+				
+				<p><label>Weekly Frequency</label></p>
+				<div id="ck-button">
+					<label> <input class="days" type="checkbox" name="date" value="0" checked><span>Sun</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="1"><span>Mon</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="2" checked><span>Tues</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="3"><span>Wed</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="4" checked><span>Thur</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="5"><span>Fri</span></label>
+					<label> <input class="days" type="checkbox" name="date" value="6"><span>Sat</span></label>
+				</div>
+		
+		
+					<p><label>Daily Frequency</label></p>
+				<div id="daily-button" class= "dropdown">
+				<select name="daily-options" class="btn btn-default dropdown-toggle" type= "button" id="dailyOptions">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+					</select>
+				</div>
+
+				<p></p>
+			
+			<button id="reminder" onclick="toggleReminder()" type="button">Reminder <i class="fa fa-chevron-right"></i></button>
+				<div class="hide">
+					<select name="alert-options" id="alertOptions">
+						<option value="0">None</option>
+						<option value="1">Every 1 hour</option>
+						<option value="2">Every 2 hour</option>
+						<option value="3">Every 3 hour</option>
+						<option value="4">Every 4 hour</option>
+						<option value="5">Every 5 hour</option>
+					</select>
+					<label><span class="text-format"> between </span><input class="timepicker" type="time" name="time" value="00:00"></label>
+					<label><span class="text-format">and </span><input class="timepicker" type="time" name="time" value="23:59"></label>
+				</div>
+				
+				<p id="save_p"><input id="save" type="button" value="Save It"></p>
+				
+			</form>
+
+		</div>
+		<script>
+			var key = window.location.href;
+      		key = key.substring(key.indexOf("?") + 1);      // Get id of the habit needed edit
+			/* Page transitions */
+			$(window).load(function() { 
+			    $(document.body).animate({opacity: 1}, 750); 
+			});
+
+			$('#save').click(function pageTransition(){ 
+    			$(document.body).animate({opacity: 0}, 750, function(){window.location.href='list.html'}); 
+
+			}); 
+
+			function selectImage(name) {
+				//Clear all the other effects
+				document.getElementById('icon1').style.border = "none";
+				document.getElementById('icon2').style.border = "none";
+				document.getElementById('icon3').style.border = "none";
+				var image = document.getElementById(name);
+				image.style.border = "5px solid #42A5F5";
+			}
+
+			var ref = new Firebase('https://burning-heat-9490.firebaseio.com/');
+       		
+       		//on save, send data into firebase
+       		$('#save').click(function createHabit(){
+       			//weekly frequency
+       			var weeklyFreqArray = [];
+                var weekdays = document.getElementsByClassName('days'); 
+
+                for (var i = 0; i < weekdays.length; i++){
+                       if (weekdays[i].checked){
+                              weeklyFreqArray.push(Number(weekdays[i].value));
+                       }
+                }
+                console.log(window.user_key);
+                     
+                // Title
+                var title = $('#title').val();       
+       			var newHabit = ref.child('Facebook').child(window.user_key).child("Habits");
+       			// Daily Frequency 
+       			var dailyoption = document.getElementById('dailyOptions'); 
+       			var options = dailyoption.children; 
+
+       			for (var i = 0; i < options.length; i++){
+       				if (options[i].selected){
+       					var daily = Number(options[i].value); 
+       				}
+       			}
+
+       			//Reminders: Time Interval 
+       			var reminders = document.getElementById('alertOptions'); 
+       			var reminderOptions = reminders.children; 
+
+       			for (var i = 0; i < reminderOptions.length; i++){
+       				if (reminderOptions[i].selected){
+       					var interval = Number(reminderOptions[i].value); 
+       				}
+       			}
+
+       			//Reminders: Start time and finish time 
+       			var hours = document.getElementsByClassName('timepicker'); 
+       			var start = hours[0].value; 
+       			var end = hours[1].value; 
+
+       			newHabit.child(key).set({title:title, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
+       		});
+
+		</script>
+	</body>
+</html>
