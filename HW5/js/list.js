@@ -174,6 +174,11 @@ function loginSuccess() {
             window.user_key = user_key;
             var habitList = $('#habit-list');
             var ref = dataRef.child(user_key).child('Habits');
+            ref.on("value", function(snap) {
+                if(snap.exists() == false){
+                    window.location.href = "../src/welcome.html";
+                }
+            });
             /* Fetch habit list data */
             ref.on('child_added', function (snapshot) {
                 // get data
