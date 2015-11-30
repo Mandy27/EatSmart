@@ -7,7 +7,6 @@ getData();
 
 function getData(){
 	var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
-	var result;
 	ref.on("value", function(snapshot) {
 	   data = _.toArray(snapshot.val().Habits);
 	}, function (errorObject) {

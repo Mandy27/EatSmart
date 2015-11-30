@@ -36,7 +36,16 @@ $('.loginButton').on('click',function onClickLogin(){
 		if (error) {
 		    signUpText.innerHTML = error+"<span style='color: red'>&#10005;</span>";
 		} else {
-		    $(document.body).animate({opacity: 0}, 750, function(){window.location.href='welcome.html'});
+			ref = ref.child('Custom').child(authData.uid);
+			ref.on("value", function(snapshot) {
+				if(snapshot.val() != null || snapshot.val() != undefined){
+					$(document.body).animate({opacity: 0}, 750, function(){window.location.href='list.html'});
+				}
+				else{
+					$(document.body).animate({opacity: 0}, 750, function(){window.location.href='welcome.html'});
+				}
+			}, function (errorObject) {
+			});
 		}
 	});
 	var buttons = document.getElementsByClassName('buttons')[0]; 
