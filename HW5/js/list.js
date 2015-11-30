@@ -71,27 +71,29 @@ function updateProgress(element, int) {
 
 /* Transition animations when a habit is deleted */
 function deleteHabit(element) {
-    var ref = new Firebase('https://burning-heat-9490.firebaseio.com/Facebook');
-    ref = ref.child(window.user_key);
-    var habit = ref.child('Habits');
-    var flag = confirm("Are you sure you want to delete the habit?");
-    if(flag === true){
-        habit.child(element.value).remove();
+    var ref = new Firebase('https://burning-heat-9490.firebaseio.com/Custom');
+    ref.onAuth(function(authData){
+        ref = ref.child(authData.uid);
+        var habit = ref.child('Habits');
+        var flag = confirm("Are you sure you want to delete the habit?");
+        if(flag === true){
+            habit.child(element.value).remove();
 
-        var child = element.parentNode.parentNode;
-        var parent = child.parentNode;
+            var child = element.parentNode.parentNode;
+            var parent = child.parentNode;
 
-         ///Slides up to delete 
-         $(child).closest('li').slideUp('slow', function(){
-             $(child).remove(); 
-         });
+             ///Slides up to delete 
+             $(child).closest('li').slideUp('slow', function(){
+                 $(child).remove(); 
+             });
 
-        habit.on("value", function(snapshot) {
-            if(snapshot.exists() == false){
-                window.location.href = "../src/welcome.html";
-            }
-        });
-    }
+            habit.on("value", function(snapshot) {
+                if(snapshot.exists() == false){
+                    window.location.href = "../src/welcome.html";
+                }
+            });
+        }
+    });
 }
 
 // keep track of habit progress 
