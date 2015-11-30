@@ -166,69 +166,72 @@ function addPageTransition(){
     }
 
 }
-function loginSuccess() {
-    FB.api('/me', function(response) {
-        var dataRef = new Firebase('https://burning-heat-9490.firebaseio.com/Facebook');
-        dataRef.on("value", function(snapshot) {
-            var user_key = _.findKey(snapshot.val(),function(d){return d.user_id == response.id});
-            window.user_key = user_key;
-            var habitList = $('#habit-list');
-            var ref = dataRef.child(user_key).child('Habits');
-            ref.on("value", function(snap) {
-                if(snap.exists() == false){
-                    window.location.href = "../src/welcome.html";
-                }
-            });
-            /* Fetch habit list data */
-            ref.on('child_added', function (snapshot) {
-                // get data
-                var data = snapshot.val();
-                var title = data.title;
-                var dailyfrequency = data.daily_frequency;
-                var dailycounter = 0;
-                var daycounter = 10;
-                var record = 20;
-                var delay = 0; 
-                
-                //create habit
-                habitList.prepend(
-                    '<li >' +
-                        '<ul class="habit-info">' +
-                            '<li><div class="habit-name">' + title + '</div></li>' +
-                        '</ul>' +
-                        '<div class="message">' + 
-                            '<span class="message-total">' +
-                                '<strong>' + daycounter + '</strong> days in a row! Best Record: <strong>' + record + '</strong><br>' +
-                                '<svg height="25" width="150">' +
-                                    '<line class="progress" x1="0" y1="0" x2="60" y2="0" style="stroke:rgba(65, 131, 215, 0.8);stroke-width:25" />' +
-                                    '<line class="bar" x1="60" y1="0" x2="150" y2="0" style="stroke:rgba(171,171,171,0.6);stroke-width:25" />' +
-                                '</svg>' +
-                            '</span><br>' +
-                            '<span class="message-today">Completed <strong>' + dailycounter + '/' + dailyfrequency + '</strong> for today!</span>' +
-                        '</div>' +
-                        '<div class="habit-op">' +
-                            '<button type="button" id= "increment" class="op op-done" onclick="updateProgress(this,' + dailycounter + ');" title="done">' +
-                                '<img src="../img/done.svg" alt="Done">' +
-                            '</button>' +
-                            '<button type="button" class="op op-edit" onclick="editPageTransition(this.id)" title="edit habit" id='+snapshot.key()+'>' +
-                                '<img src="../img/edit.svg" alt="Edit">' +
-                            '</button>' +
-                            '<button type="button" id="delete" class="op op-del" onclick="deleteHabit(this)" title="delete habit" value='+snapshot.key()+'>' +
-                                '<img src="../img/delete.svg" alt="Del">' + 
-                            '</button>' +
-                        '<div>' +
-                    '</li>'
-                ).children().animate({right: '0px'}, 750);;
-            });
-        }, function (errorObject) {
-            window.user_key = null;
-        });  
-    });
+/***********************Authentication*************************/
+// Register the callback to be fired every time auth state changes
+var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
+//ref.unauth();
+ref.onAuth(authDataCallback);
+function authDataCallback(authData) {
+  if (authData) {
+    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+    var dataRef = ref.child('Custom');
+    dataRef.on("value", function(snapshot) {
+        var habitList = $('#habit-list');
+        var ref = dataRef.child(authData.uid).child('Habits');
+        ref.on("value", function(snap) {
+            if(snap.exists() == false){
+                window.location.href = "../src/welcome.html";
+            }
+        });
+        /* Fetch habit list data */
+        ref.on('child_added', function (snapshot) {
+            // get data
+            var data = snapshot.val();
+            var title = data.title;
+            var dailyfrequency = data.daily_frequency;
+            var dailycounter = 0;
+            var daycounter = 10;
+            var record = 20;
+            var delay = 0; 
+            
+            //create habit
+            habitList.prepend(
+                '<li >' +
+                    '<ul class="habit-info">' +
+                        '<li><div class="habit-name">' + title + '</div></li>' +
+                    '</ul>' +
+                    '<div class="message">' + 
+                        '<span class="message-total">' +
+                            '<strong>' + daycounter + '</strong> days in a row! Best Record: <strong>' + record + '</strong><br>' +
+                            '<svg height="25" width="150">' +
+                                '<line class="progress" x1="0" y1="0" x2="60" y2="0" style="stroke:rgba(65, 131, 215, 0.8);stroke-width:25" />' +
+                                '<line class="bar" x1="60" y1="0" x2="150" y2="0" style="stroke:rgba(171,171,171,0.6);stroke-width:25" />' +
+                            '</svg>' +
+                        '</span><br>' +
+                        '<span class="message-today">Completed <strong>' + dailycounter + '/' + dailyfrequency + '</strong> for today!</span>' +
+                    '</div>' +
+                    '<div class="habit-op">' +
+                        '<button type="button" id= "increment" class="op op-done" onclick="updateProgress(this,' + dailycounter + ');" title="done">' +
+                            '<img src="../img/done.svg" alt="Done">' +
+                        '</button>' +
+                        '<button type="button" class="op op-edit" onclick="editPageTransition(this.id)" title="edit habit" id='+snapshot.key()+'>' +
+                            '<img src="../img/edit.svg" alt="Edit">' +
+                        '</button>' +
+                        '<button type="button" id="delete" class="op op-del" onclick="deleteHabit(this)" title="delete habit" value='+snapshot.key()+'>' +
+                            '<img src="../img/delete.svg" alt="Del">' + 
+                        '</button>' +
+                    '<div>' +
+                '</li>'
+            ).children().animate({right: '0px'}, 750);;
+        });
+    }, function (errorObject) {
+    });  
+  } else {
+    console.log("User is logged out");
+    window.location.href = "../src/login.html";
+  }
 }
 
-function loginFailure(){
-  window.location.href = "../src/login.html";
-}
 
 
 

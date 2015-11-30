@@ -2,14 +2,17 @@ function toggleReminder(){
 	$(".hide").toggleClass("reminderDivShow");
 	$(".fa-chevron-right").toggleClass("fa-chevron-down");
 }
-function loginSuccess() {
-  FB.api('/me', function(response) {
-    var ref = new Firebase('https://burning-heat-9490.firebaseio.com/');
+// Register the callback to be fired every time auth state changes
+var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
+//ref.unauth();
+ref.onAuth(authDataCallback);
+function authDataCallback(authData) {
+  if (authData) {
+    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+    var key = window.location.href;
+    key = key.substring(key.indexOf("?") + 1);      // Get id of the habit needed edit
     ref.on("value", function(snap) {
-      window.user_key = _.findKey(snap.val().Facebook,function(d){return d.user_id == response.id});
-      var key = window.location.href;
-      key = key.substring(key.indexOf("?") + 1);      // Get id of the habit needed edit
-      var dataRef = ref.child('Facebook').child(window.user_key);
+      var dataRef = ref.child('Custom').child(authData.uid);
       dataRef.on("value", function(snapshot) {
         var data = snapshot.val().Habits[key];
         $("#title")[0].value = data.title;
@@ -39,13 +42,52 @@ function loginSuccess() {
       }, function (errorObject) {
       });
     }, function (errorObject) {
-      window.user_key = null;
     });
-  });
-}
+    //on save, send data into firebase
+    $('#save').click(function createHabit(){
+      //weekly frequency
+      var weeklyFreqArray = [];
+      var weekdays = document.getElementsByClassName('days'); 
 
-function loginFailure(){
-  window.location.href = "../src/login.html";
+      for (var i = 0; i < weekdays.length; i++){
+        if (weekdays[i].checked){
+          weeklyFreqArray.push(Number(weekdays[i].value));
+        }
+      }              
+      // Title
+      var title = $('#title').val();       
+      var newHabit = ref.child('Custom').child(authData.uid).child("Habits");
+      // Daily Frequency 
+      var dailyoption = document.getElementById('dailyOptions'); 
+      var options = dailyoption.children; 
+
+      for (var i = 0; i < options.length; i++){
+        if (options[i].selected){
+          var daily = Number(options[i].value); 
+        }
+      }
+
+      //Reminders: Time Interval 
+      var reminders = document.getElementById('alertOptions'); 
+      var reminderOptions = reminders.children; 
+
+      for (var i = 0; i < reminderOptions.length; i++){
+        if (reminderOptions[i].selected){
+          var interval = Number(reminderOptions[i].value); 
+        }
+      }
+
+      //Reminders: Start time and finish time 
+      var hours = document.getElementsByClassName('timepicker'); 
+      var start = hours[0].value; 
+      var end = hours[1].value; 
+
+      newHabit.child(key).set({title:title, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
+    });
+  } else {
+    console.log("User is logged out");
+    window.location.href = "../src/login.html";
+  }
 }
 
 /* Page transitions */

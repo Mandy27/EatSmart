@@ -168,32 +168,6 @@ body {
   box-sizing: border-box;
 }
 
-.loginFacebook {
-  -webkit-appearance:none;
-  width: 100%;
-  display: inline-block;
-  margin: 0;
-  padding: 15px;
-  background: none;
-  border: none;
-  color: white;
-  background-color: #42629f;
-  -webkit-border-radius: 5px; /*For Safari, etc. */
-  -moz-border-radius: 5px; /* For Mozilla, etc. */
-  border-radius: 5px; /* CSS3 Feature */
-  opacity: 1.0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  font-size: 1.5em;
-  margin: 2px;
-}
-.loginFacebook:hover {
-  opacity: 0.75;
-  cursor: pointer;
-}
-
-
 @media (max-width: 380px) {
   .login {
     top: 7%;
