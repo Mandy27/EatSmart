@@ -6,6 +6,7 @@
 		<title>Add a habit</title>
 		<link rel="stylesheet" href="../css/forms.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>
 	</head>
 	<body onload="reminder()">
 		<div class="forms">
@@ -13,12 +14,13 @@
 			<form>
 				<p><label><span id="title_text">Habit Title</span></label></p>
 				<p><input id="title" type="text" name="fullname" placeholder="Your Habit"></p> <!-- change this to a form -->
-				<p><label>Habit Icon</label></p>
-				<img id="icon1" class="icon" onclick="selectImage('icon1');" src="../img/sleep.jpg" alt="sleep image"/>
-				<img id="icon2" class="icon" onclick="selectImage('icon2');" src="../img/salad.jpg" alt="eat image"/>
-				<img id="icon3" class="icon" onclick="selectImage('icon3');" src="../img/run.jpg" alt="run image"/>
-				<img id="icon4" class="icon" src="../img/add.png" alt="find a image"/>
-				
+				<p><label>Habit Icon</label><input type="filepicker" data-fp-apikey="A7L0jnzTWSOGjgd0WPkjfz" data-fp-mimetypes="image/*" data-fp-container="modal" data-fp-store-location="dropbox" onchange="getIcon(event)" class="addImage"></p>
+				<div id="iconHolder">
+					<!-- <img id="icon1" class="icon" onclick="selectImage('icon1');" src="../img/sleep.jpg" alt="sleep image"/>
+					<img id="icon2" class="icon" onclick="selectImage('icon2');" src="../img/salad.jpg" alt="eat image"/>
+					<img id="icon3" class="icon" onclick="selectImage('icon3');" src="../img/run.jpg" alt="run image"/> -->
+					<!-- <img id="icon4" class="icon" src="../img/add.png" alt="find a image"/> -->
+				</div>
 				<p><label>Weekly Frequency</label></p>
 				<div id="ck-button">
 					<label> <input class="days" type="checkbox" name="date" value="0"><span>Sun</span></label>

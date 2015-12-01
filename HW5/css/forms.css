@@ -56,6 +56,18 @@ img.icon{
 	-webkit-transition: .3s ease-in-out;
 	transition: .3s ease-in-out;
 }
+.addImage{
+	margin-left: 60px;
+	height: 30px;
+	width: 80px;
+	font-family: 'Helvetica', sans-serif;
+	color:#6c6c6c;
+	border: none;
+	border-radius: 10px;
+	background-color: rgb(241,241,241);
+	cursor: pointer;
+	font-size: medium;
+}
 
 @media (max-width: 500px) {
   div.forms {
@@ -90,7 +102,6 @@ img.icon{
 	-webkit-transition: .3s ease-in-out;
 	transition: .3s ease-in-out;
   }
-  
   p{
 	color:#6c6c6c;
 	font-size: small;

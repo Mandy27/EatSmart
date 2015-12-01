@@ -9,7 +9,7 @@ $('.signUpButton').on('click', function onClickSignUp() {
 	  if (error) {
 	    signUpText.innerHTML = error+"<span style='color: red'>&#10005;</span>";
 	  } else {
-	    signUpText.innerHTML = "Sign in successful! <span style='color: #4caf50'>&#10004;</span><br> Please Sign In !!!";
+	    signUpText.innerHTML = "Sign up successful! <span style='color: #4caf50'>&#10004;</span><br> Please Sign In !!!";
 	    $("#usermail")[0].value = "";
 	    $("#password")[0].value = "";
 	  }
