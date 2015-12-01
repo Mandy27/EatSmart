@@ -195,12 +195,14 @@ function authDataCallback(authData) {
             var daycounter = 10;
             var record = 20;
             var delay = 0; 
-            
+            var icon_src = data.icon_src;
+            var icon_id = data.icon_id;
             //create habit
             habitList.prepend(
                 '<li >' +
                     '<ul class="habit-info">' +
                         '<li><div class="habit-name">' + title + '</div></li>' +
+                        '<li><img class="habit-icon" src='+icon_src+' id='+icon_id+' alt="habit icon"></li>'+
                     '</ul>' +
                     '<div class="message">' + 
                         '<span class="message-total">' +

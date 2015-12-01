@@ -3,26 +3,24 @@ function toggleReminder(){
 	$(".fa-chevron-right").toggleClass("fa-chevron-down");
 }
 function getIcon(e){
-  console.log(e);
   var icon_holder = document.getElementById('iconHolder');
   var filename =e.timeStamp;
   var icon = document.createElement('img');
   icon.src = e.fpfile.url;
   icon.alt = filename;
   icon.className = "icon";
-  icon.id = "i-"+filename;
+  icon.id = filename;
   icon.dataSelected = false;
   icon.addEventListener("click",function(){
-    console.log(filename);
     selectImage(filename);
   });
   icon_holder.appendChild(icon);
 }
 function selectImage(name) {
   $('#iconHolder img').attr('style','border:none');
-  $('#i-'+name).attr('style','border:5px solid #42A5F5');
-  selected_icon.id = "i-"+name;
-  selected_icon.src = $('#i-'+name).attr('src');
+  $('#'+name).attr('style','border:5px solid #42A5F5');
+  selected_icon.id = name;
+  selected_icon.src = $('#'+name).attr('src');
 }
 var selected_icon = {};
 // Register the callback to be fired every time auth state changes
@@ -79,7 +77,7 @@ function authDataCallback(authData) {
           var start = hours[0].value; 
           var end = hours[1].value; 
           
-          newHabit.push({title:title, icon_id : selected_icon.id, icon_sr: selected_icon.src, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
+          newHabit.push({title:title, icon_id : selected_icon.id, icon_src: selected_icon.src, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
         });
       }, function (errorObject) {
       });

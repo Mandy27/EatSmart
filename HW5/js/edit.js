@@ -2,6 +2,28 @@ function toggleReminder(){
 	$(".hide").toggleClass("reminderDivShow");
 	$(".fa-chevron-right").toggleClass("fa-chevron-down");
 }
+function getIcon(e){
+  console.log(e);
+  var icon_holder = document.getElementById('iconHolder');
+  var filename =e.timeStamp;
+  var icon = document.createElement('img');
+  icon.src = e.fpfile.url;
+  icon.alt = filename;
+  icon.className = "icon";
+  icon.id = filename;
+  icon.dataSelected = false;
+  icon.addEventListener("click",function(){
+    selectImage(filename);
+  });
+  icon_holder.appendChild(icon);
+}
+function selectImage(name) {
+  $('#iconHolder img').attr('style','border:none');
+  $('#'+name).attr('style','border:5px solid #42A5F5');
+  selected_icon.id = name;
+  selected_icon.src = $('#'+name).attr('src');
+}
+var selected_icon = {};
 // Register the callback to be fired every time auth state changes
 var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
 //ref.unauth();
@@ -38,6 +60,21 @@ function authDataCallback(authData) {
         var timepicker = document.getElementsByClassName('timepicker');
         timepicker[0].value = data.from;
         timepicker[1].value = data.to;
+
+        var icon_holder = document.getElementById('iconHolder');
+        var icon = document.createElement('img');
+        icon.src = data.icon_src;
+        icon.alt = "habit icon";
+        icon.className = "icon";
+        icon.id = data.icon_id;
+        icon.addEventListener("click",function(){
+          selectImage(data.icon_id);
+        });
+        icon.style.border = '5px solid #42A5F5';
+        icon_holder.appendChild(icon);
+        selected_icon.id = data.icon_id;
+        selected_icon.src = $('#'+data.icon_id).attr('src');
+
 
       }, function (errorObject) {
       });
@@ -82,7 +119,7 @@ function authDataCallback(authData) {
       var start = hours[0].value; 
       var end = hours[1].value; 
 
-      newHabit.child(key).set({title:title, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
+      newHabit.child(key).set({title:title, icon_id : selected_icon.id, icon_src: selected_icon.src, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
     });
   } else {
     console.log("User is logged out");
