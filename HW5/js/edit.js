@@ -120,6 +120,7 @@ function authDataCallback(authData) {
       var end = hours[1].value; 
 
       newHabit.child(key).set({title:title, icon_id : selected_icon.id, icon_src: selected_icon.src, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
+      mixpanel.track("User edited a habit"); 
     });
   } else {
     console.log("User is logged out");

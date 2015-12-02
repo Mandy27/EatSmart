@@ -111,12 +111,10 @@
 				image.style.border = "5px solid #42A5F5";
 			}
 
-
 			/* Mixpanel Tracking */
         	mixpanel.track("Edit Page View"); 
 
-        	mixpanel.time_event("#save");
-        	//mixpanel.track_links("#save", "Edited Habit") ;
+        	mixpanel.time_event("User edited a habit");
 		</script>
 	</body>
 </html>

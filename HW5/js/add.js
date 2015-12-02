@@ -77,7 +77,14 @@ function authDataCallback(authData) {
           var start = hours[0].value; 
           var end = hours[1].value; 
           console.log(selected_icon);
+
           newHabit.push({title:title, icon_id : selected_icon.id, icon_src: selected_icon.src, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
+          
+          mixpanel.track("User added a habit"); 
+          mixpanel.people.set_once({
+            "numHabits": 0
+          });
+          mixpanel.people.increment("numHabits", 1); 
         });
       }, function (errorObject) {
       });

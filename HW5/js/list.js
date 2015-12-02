@@ -44,6 +44,7 @@ function updateProgress(element, int) {
     var errorId = 0;
     //creates a new, incremental record
     function incrementId(){
+        mixpanel.track("User updated progress of habit"); 
         //increment the counter
         incrementProgress.child('counter').transaction(function(currentValue){
             return (currentValue || 0) + 1
@@ -77,7 +78,11 @@ function deleteHabit(element) {
         var habit = ref.child('Habits');
         var flag = confirm("Are you sure you want to delete the habit?");
         if(flag === true){
+            mixpanel.track("User deleted habit"); 
+            mixpanel.people.increment("numHabits", -1); 
+
             added = true; 
+
             habit.child(element.value).remove();
 
             var child = element.parentNode.parentNode;

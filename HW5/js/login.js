@@ -2,6 +2,7 @@ var messageShown = false;
 
 /*******************Custom Login ******************/
 $('.signUpButton').on('click', function onClickSignUp() {
+	// Identify the user w/ a specific ID 
 	var signUpText = document.getElementById("signInMessage");
 	var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
 	ref.createUser({
@@ -9,8 +10,10 @@ $('.signUpButton').on('click', function onClickSignUp() {
 	  password : $("#password")[0].value
 	}, function(error, userData) {
 	  if (error) {
+	  	mixpanel.track("User failed to log in"); 
 	    signUpText.innerHTML = error+"<span style='color: red'>&#10005;</span>";
 	  } else {
+	  	mixpanel.track("User successfully logged in"); 
 	    signUpText.innerHTML = "Sign up successful! <span style='color: #4caf50'>&#10004;</span><br> Please Sign In !!!";
 	    $("#usermail")[0].value = "";
 	    $("#password")[0].value = "";
@@ -39,9 +42,22 @@ $('.loginButton').on('click',function onClickLogin(){
 	  password : $("#password")[0].value
 	}, function(error, authData) {
 		if (error) {
+			mixpanel.track("User failed to sign in"); 
 		    signUpText.innerHTML = error+"<span style='color: red'>&#10005;</span>";
 		} else {
+			mixpanel.track("User successfully signed in"); 
 			ref = ref.child('Custom').child(authData.uid);
+			
+			mixpanel.identify($("#usermail")[0].value);
+
+			mixpanel.people.set_once({
+		    	"$email": $("#usermail")[0].value
+		    });  
+
+		    mixpanel.people.set({
+		    	"$last_login": new Date()
+		    });
+
 			ref.on("value", function(snapshot) {
 				if(snapshot.val() != null || snapshot.val() != undefined){
 					$(document.body).animate({opacity: 0}, 750, function(){window.location.href='list.html'});
