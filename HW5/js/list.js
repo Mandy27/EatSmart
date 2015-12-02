@@ -226,7 +226,7 @@ function authDataCallback(authData) {
                         '</button>' +
                     '<div>' +
                 '</li>'
-            ).children().animate({right: '0px'}, 750);;
+            ).children().animate({right: '0px'}, 750);
         });
     }, function (errorObject) {
     });  
