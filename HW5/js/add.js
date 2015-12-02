@@ -22,7 +22,7 @@ function selectImage(name) {
   selected_icon.id = name;
   selected_icon.src = $('#'+name).attr('src');
 }
-var selected_icon = {};
+var selected_icon = {id: "default", src: "../img/No_image_available.jpg"};
 // Register the callback to be fired every time auth state changes
 var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
 //ref.unauth();
@@ -76,7 +76,7 @@ function authDataCallback(authData) {
           var hours = document.getElementsByClassName('timepicker'); 
           var start = hours[0].value; 
           var end = hours[1].value; 
-          
+          console.log(selected_icon);
           newHabit.push({title:title, icon_id : selected_icon.id, icon_src: selected_icon.src, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
         });
       }, function (errorObject) {

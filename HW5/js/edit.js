@@ -23,7 +23,7 @@ function selectImage(name) {
   selected_icon.id = name;
   selected_icon.src = $('#'+name).attr('src');
 }
-var selected_icon = {};
+var selected_icon = {id: "default", src: "../img/No_image_available.jpg"};
 // Register the callback to be fired every time auth state changes
 var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
 //ref.unauth();
