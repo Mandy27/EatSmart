@@ -1,3 +1,5 @@
+var messageShown = false; 
+
 /*******************Custom Login ******************/
 $('.signUpButton').on('click', function onClickSignUp() {
 	var signUpText = document.getElementById("signInMessage");
@@ -14,19 +16,22 @@ $('.signUpButton').on('click', function onClickSignUp() {
 	    $("#password")[0].value = "";
 	  }
 	});
-	var buttons = document.getElementsByClassName('buttons')[0]; 
-	buttons.style.position = 'relative'; 
-	$(buttons).animate({top: '65px'}, 'slow', function(){
-		signUpText.style.display = "block";
-		buttons.style.top = 0; 
-	});
+	if (!messageShown){
+		var buttons = document.getElementsByClassName('buttons')[0]; 
+		buttons.style.position = 'relative'; 
+		$(buttons).animate({top: '65px'}, 'slow', function(){
+			signUpText.style.display = "block";
+			buttons.style.top = 0; 
+			messageShown = true; 
+		});
+	}
 }); 
 
 $(window).load(function() { 
 	$(document.body).animate({opacity: 1}, 750); 
 });
 
-$('.loginButton').one('click',function onClickLogin(){ 
+$('.loginButton').on('click',function onClickLogin(){ 
 	var signUpText = document.getElementById("signInMessage");
 	var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
 	ref.authWithPassword({
@@ -48,10 +53,13 @@ $('.loginButton').one('click',function onClickLogin(){
 			});
 		}
 	});
-	var buttons = document.getElementsByClassName('buttons')[0]; 
-	buttons.style.position = 'relative'; 
-	$(buttons).animate({top: '65px'}, 'slow', function(){
-		signUpText.style.display = "block";
-		buttons.style.top = 0; 
-	}); 
+	if (!messageShown){
+		var buttons = document.getElementsByClassName('buttons')[0]; 
+		buttons.style.position = 'relative'; 
+		$(buttons).animate({top: '65px'}, 'slow', function(){
+			signUpText.style.display = "block";
+			buttons.style.top = 0; 
+			messageShown = true; 
+		}); 
+	}
 }); 
