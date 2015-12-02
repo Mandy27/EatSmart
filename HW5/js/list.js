@@ -77,6 +77,7 @@ function deleteHabit(element) {
         var habit = ref.child('Habits');
         var flag = confirm("Are you sure you want to delete the habit?");
         if(flag === true){
+            added = true; 
             habit.child(element.value).remove();
 
             var child = element.parentNode.parentNode;
@@ -168,6 +169,9 @@ function addPageTransition(){
     }
 
 }
+
+var added = false; // Keeps track of whether children were previously added 
+
 /***********************Authentication*************************/
 // Register the callback to be fired every time auth state changes
 var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
@@ -186,7 +190,7 @@ function authDataCallback(authData) {
             }
         });
         /* Fetch habit list data */
-        ref.on('child_added', function (snapshot) {
+        var childAdd = ref.on('child_added', function (snapshot) {
             // get data
             var data = snapshot.val();
             var title = data.title;
@@ -198,35 +202,37 @@ function authDataCallback(authData) {
             var icon_src = data.icon_src;
             var icon_id = data.icon_id;
             //create habit
-            habitList.prepend(
-                '<li >' +
-                    '<ul class="habit-info">' +
-                        '<li><div class="habit-name">' + title + '</div></li>' +
-                        '<li><img class="habit-icon" src='+icon_src+' id='+icon_id+' alt="habit icon"></li>'+
-                    '</ul>' +
-                    '<div class="message">' + 
-                        '<span class="message-total">' +
-                            '<strong>' + daycounter + '</strong> days in a row! Best Record: <strong>' + record + '</strong><br>' +
-                            '<svg height="25" width="150">' +
-                                '<line class="progress" x1="0" y1="0" x2="60" y2="0" style="stroke:rgba(65, 131, 215, 0.8);stroke-width:25" />' +
-                                '<line class="bar" x1="60" y1="0" x2="150" y2="0" style="stroke:rgba(171,171,171,0.6);stroke-width:25" />' +
-                            '</svg>' +
-                        '</span><br>' +
-                        '<span class="message-today">Completed <strong>' + dailycounter + '/' + dailyfrequency + '</strong> for today!</span>' +
-                    '</div>' +
-                    '<div class="habit-op">' +
-                        '<button type="button" id= "increment" class="op op-done" onclick="updateProgress(this,' + dailycounter + ');" title="done">' +
-                            '<img src="../img/done.svg" alt="Done">' +
-                        '</button>' +
-                        '<button type="button" class="op op-edit" onclick="editPageTransition(this.id)" title="edit habit" id='+snapshot.key()+'>' +
-                            '<img src="../img/edit.svg" alt="Edit">' +
-                        '</button>' +
-                        '<button type="button" id="delete" class="op op-del" onclick="deleteHabit(this)" title="delete habit" value='+snapshot.key()+'>' +
-                            '<img src="../img/delete.svg" alt="Del">' + 
-                        '</button>' +
-                    '<div>' +
-                '</li>'
-            ).children().animate({right: '0px'}, 750);
+            if (!added){
+                habitList.prepend(
+                    '<li >' +
+                        '<ul class="habit-info">' +
+                            '<li><div class="habit-name">' + title + '</div></li>' +
+                            '<li><img class="habit-icon" src='+icon_src+' id='+icon_id+' alt="habit icon"></li>'+
+                        '</ul>' +
+                        '<div class="message">' + 
+                            '<span class="message-total">' +
+                                '<strong>' + daycounter + '</strong> days in a row! Best Record: <strong>' + record + '</strong><br>' +
+                                '<svg height="25" width="150">' +
+                                    '<line class="progress" x1="0" y1="0" x2="60" y2="0" style="stroke:rgba(65, 131, 215, 0.8);stroke-width:25" />' +
+                                    '<line class="bar" x1="60" y1="0" x2="150" y2="0" style="stroke:rgba(171,171,171,0.6);stroke-width:25" />' +
+                                '</svg>' +
+                            '</span><br>' +
+                            '<span class="message-today">Completed <strong>' + dailycounter + '/' + dailyfrequency + '</strong> for today!</span>' +
+                        '</div>' +
+                        '<div class="habit-op">' +
+                            '<button type="button" id= "increment" class="op op-done" onclick="updateProgress(this,' + dailycounter + ');" title="done">' +
+                                '<img src="../img/done.svg" alt="Done">' +
+                            '</button>' +
+                            '<button type="button" class="op op-edit" onclick="editPageTransition(this.id)" title="edit habit" id='+snapshot.key()+'>' +
+                                '<img src="../img/edit.svg" alt="Edit">' +
+                            '</button>' +
+                            '<button type="button" id="delete" class="op op-del" onclick="deleteHabit(this)" title="delete habit" value='+snapshot.key()+'>' +
+                                '<img src="../img/delete.svg" alt="Del">' + 
+                            '</button>' +
+                        '<div>' +
+                    '</li>'
+                ).children().animate({right: '0px'}, 750);
+            }
         });
     }, function (errorObject) {
     });  
