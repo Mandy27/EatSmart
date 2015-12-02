@@ -90,7 +90,7 @@ function authDataCallback(authData) {
       }, function (errorObject) {
       });
   } else {
-    console.log("User is logged out");
+    Rollbar.info("User is logged out");
     window.location.href = "../src/login.html";
   }
 }

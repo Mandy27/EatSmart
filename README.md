@@ -5,7 +5,6 @@
 - Edit Habit and save in database ( by Mandy Ngo )
 - Delete Habit and save in database ( by Mandy Ngo )
 - UI focused JavaScript ( by Christine Lao )
-- Saving of some form data in add into database ( by Christine Lao )
 - Implemented Online Notification without using any library ( by Mandy Ngo , Tyler Nguyen)
 
 ####Notes:

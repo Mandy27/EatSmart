@@ -24,6 +24,7 @@ function selectImage(name) {
   selected_icon.id = name;
   selected_icon.src = $('#'+name).attr('src');
 }
+var submitted = false; 
 var selected_icon = {id: "default", src: "../img/No_image_available.jpg"};
 // Register the callback to be fired every time auth state changes
 var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
@@ -62,6 +63,7 @@ function authDataCallback(authData) {
         timepicker[0].value = data.from;
         timepicker[1].value = data.to;
 
+      if (!submitted){
         var icon_holder = document.getElementById('iconHolder');
         var icon = document.createElement('img');
         icon.src = data.icon_src;
@@ -75,7 +77,7 @@ function authDataCallback(authData) {
         icon_holder.appendChild(icon);
         selected_icon.id = data.icon_id;
         selected_icon.src = $('#'+data.icon_id).attr('src');
-
+      }
 
       }, function (errorObject) {
       });
@@ -83,6 +85,7 @@ function authDataCallback(authData) {
     });
     //on save, send data into firebase
     $('#save').click(function createHabit(){
+      submitted = true; 
       //weekly frequency
       var weeklyFreqArray = [];
       var weekdays = document.getElementsByClassName('days'); 
