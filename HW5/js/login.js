@@ -26,7 +26,7 @@ $(window).load(function() {
 	$(document.body).animate({opacity: 1}, 750); 
 });
 
-$('.loginButton').on('click',function onClickLogin(){ 
+$('.loginButton').one('click',function onClickLogin(){ 
 	var signUpText = document.getElementById("signInMessage");
 	var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
 	ref.authWithPassword({
