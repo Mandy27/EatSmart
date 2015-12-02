@@ -16,6 +16,7 @@ function getIcon(e){
     selectImage(filename);
   });
   icon_holder.appendChild(icon);
+  selectImage(filename); // Default select the icon you just uploaded
 }
 function selectImage(name) {
   $('#iconHolder img').attr('style','border:none');

@@ -45,6 +45,7 @@ $('.loginButton').on('click',function onClickLogin(){
 			mixpanel.track("User failed to sign in"); 
 		    signUpText.innerHTML = error+"<span style='color: red'>&#10005;</span>";
 		} else {
+			signUpText.innerHTML = "Sign in successful! <span style='color: #4caf50'>&#10004";
 			mixpanel.track("User successfully signed in"); 
 			ref = ref.child('Custom').child(authData.uid);
 			
