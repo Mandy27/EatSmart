@@ -17,6 +17,7 @@ function updateProgress(element, int) {
     
     int++;
 
+
     // Animates from current location on the bar 
     $({x2:oldx2}).animate(
         {x2: (Number(oldx2) + 5) + 'px'},
@@ -53,7 +54,7 @@ function updateProgress(element, int) {
                 console.log("User " + authData.uid + " is logged in with " + authData.provider);
 
                 ref.on("value", function(snap) {
-                  var dayHabit = ref.child(authData.uid).child('Habits').child(element.value).child('daycounter'); 
+                  var dayHabit = ref.child(authData.uid).child('Habits').child(element.value).child('dailycounter'); 
                   var dailyfreq = snap.child(authData.uid).child('Habits').child(element.value).val()['daily_frequency']; 
 
                   dayHabit.transaction(function(currentDailyProgress){
@@ -76,14 +77,9 @@ function updateProgress(element, int) {
                 }); 
             }
         });
-    });
+    
+        var errorId = 0;
 
-    var errorId = 0;
-    //var transactionComplete = false;
-
-    //creates a new, incremental record
-     
-/*
         //increment the counter
         incrementProgress.child('counter').transaction(function(currentValue){
             return (currentValue || 0) + 1
@@ -97,17 +93,17 @@ function updateProgress(element, int) {
                 addRecord(ss.val());
             }
         });
-    }
 
-    //create new incremental record
-    function addRecord(id) {
-        setTimeout(function() {
-            incrementProgress.child('records').child('rec'+id).set('record #'+id, function(err) {
-                err && setError(err);
-            });        
-        });
-    }
-    */
+        //create new incremental record
+        function addRecord(id) {
+            setTimeout(function() {
+                incrementProgress.child('records').child('rec'+id).set('record #'+id, function(err) {
+                    err && setError(err);
+                });        
+            });
+        }
+
+    });
 }
 
 /* Transition animations when a habit is deleted */
@@ -240,7 +236,7 @@ function authDataCallback(authData) {
             var data = snapshot.val();
             var title = data.title;
             var dailyfrequency = data.daily_frequency;
-            var dailycounter = data.daycounter;
+            var dailycounter = data.dailycounter;
             var daycounter = 10;
             var record = 20;
             var delay = 0; 
