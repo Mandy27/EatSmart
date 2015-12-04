@@ -33,7 +33,7 @@ Please use the following URL to see our application: https://shrouded-depths-768
 The app was packaged using Phonegap Build. From this, we were able to generate a .apk file. The javascript would need to be adjusted for it to work correctly with the Phonegap framework, but it is compatible with the Firebase database. We did not create an iOS app because it requires a developer certification. 
 
 ####Grunt
-This task runner is used to automate the minification of HTML, CSS, and Javascript files. Grunt and Grunt plugins are installed and managed via npm, the Node.js package manager. The plugins used include: cssmin, uglify, and nodemon. 
+This task runner is used to automate the minification of HTML, CSS, and Javascript files. Grunt and Grunt plugins are installed and managed via npm, the Node.js package manager. The plugins used include: cssmin, uglify, and nodemon. Gruntfile.js is used to configure tasks and load plugins. 
 
 ####Browser Conformance: 
 - When running opening on Internet Explorer, it prompts you on whether you would like to enable ActiveX control in order to see the blocked content. 
