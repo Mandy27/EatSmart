@@ -5,14 +5,14 @@ Please use the following URL to see our application: https://shrouded-depths-768
 ####Implemented Features:
 - Added list elements to list page from database (by Chloe Lopez)
 - Create Habit and add in Firebase database. (by Harrison Wang)
-- Implement Grunt for minification and bundling (by Harrison Wang, Mandy Ngo)
-- Deploy application with Heroku (by Harrison Wang) 
 - Edit Habit and save in database (by Mandy Ngo)
 - Delete Habit and save in database (by Mandy Ngo)
 - UI focused JavaScript (by Christine Lao)
 - Implemented Online Notification without using any library (by Mandy Ngo, Tyler Nguyen)
 - Generated .apk using Phonegap Build (by Chloe Lopez)
 - Packaged Google Chrome Extension (by Chloe Lopez)
+- Implement NodeJs, Grunt, Nodemon, Uglify, CSSMin for minifications, bundling, automating restart the application (by Harrison Wang, Mandy Ngo)
+- Deploy application with Heroku (by Harrison Wang) 
 
 ####Front-End
 - HTML
@@ -21,10 +21,12 @@ Please use the following URL to see our application: https://shrouded-depths-768
 
 ####Backend 
 - Firebase
+- Nodejs
 
 ####Javascript Libraries Used
 - jquery-1.11.3.min.js
 - bootstrap.min.js
+- lodash v3.10.1
 
 ####Error Tracking
 - Rollbar
