@@ -3,7 +3,7 @@ function toggleReminder(){
 	$(".fa-chevron-right").toggleClass("fa-chevron-down");
 }
 function getIcon(e){
-  console.log(e);
+  Rollbar.debug(e);
   var icon_holder = document.getElementById('iconHolder');
   var filename =e.timeStamp;
   var icon = document.createElement('img');

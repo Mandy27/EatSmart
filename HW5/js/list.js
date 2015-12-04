@@ -18,9 +18,9 @@ function updateProgress(element, int) {
     //creates a new, incremental record
     $('body').on('click', '#increment', function incrementId(e){
         mixpanel.track("User updated progress of habit"); 
-        console.log('click'); 
+        Rollbar.debug('click'); 
         clicks++; 
-        console.log('clicks before' + clicks); 
+        Rollbar.debug('clicks before' + clicks); 
 
         ref.onAuth(function(authData) {
             if (authData) {
@@ -29,6 +29,7 @@ function updateProgress(element, int) {
                 ref.on("value", function(snap) {
                   var dayHabit = ref.child(authData.uid).child('Habits').child(element.value).child('dailycounter'); 
                   var dailyfreq = snap.child(authData.uid).child('Habits').child(element.value).val()['daily_frequency']; 
+                  var record = snap.child(authData.uid).child('Habits').child(element.value).val()['daycounter']; 
 
                   dayHabit.transaction(function(currentDailyProgress){
                     added = true; 
@@ -39,7 +40,7 @@ function updateProgress(element, int) {
                         console.log(newDailyProgress); 
                         text.innerHTML = newDailyProgress + '/' + dailyfreq; 
                         clicks--; 
-                        console.log('clicks after' + clicks); 
+                        Rollbar.debug('clicks after' + clicks); 
                         
                         //Progress bar animation 
                         var progress = element.parentNode.parentNode.getElementsByClassName('progress');
@@ -68,6 +69,30 @@ function updateProgress(element, int) {
                                 queue: false; 
                             }
                         });
+
+                        // If user met quota for today 
+                        if (newDailyProgress == dailyfreq){
+                            var dayCount = ref.child(authData.uid).child('Habits').child(element.value).child('daycounter'); 
+                            var dayCountVal = snap.child(authData.uid).child('Habits').child(element.value).val()['daycounter'];
+                            var record = ref.child(authData.uid).child('Habits').child(element.value).child('record'); 
+                            var recordVal = snap.child(authData.uid).child('Habits').child(element.value).val()['record'];
+
+                            var daycounterText = element.parentElement.parentElement.getElementsByClassName('message-total')[0].getElementsByTagName('strong')[0]; 
+                            dayCountVal++;  
+                            daycounterText.innerHTML = dayCountVal; 
+                            dayCount.transaction(function(currentDayCount){
+                                return currentDayCount + 1; 
+                            }); 
+                            // If user broke a record 
+                            if (dayCountVal > recordVal){
+                                var recordText = element.parentElement.parentElement.getElementsByClassName('message-total')[0].getElementsByTagName('strong')[1]; 
+                                recordVal++; 
+                                recordText.innerHTML = recordVal; 
+                                record.transaction(function(currentRecord){
+                                    return currentRecord + 1; 
+                                });
+                            }
+                        }
 
                         return newDailyProgress; 
                     }
@@ -221,7 +246,7 @@ var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
 ref.onAuth(authDataCallback);
 function authDataCallback(authData) {
   if (authData) {
-    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+    Rollbar.debug("User " + authData.uid + " is logged in with " + authData.provider);
     var dataRef = ref.child('Custom');
     dataRef.on("value", function(snapshot) {
         var habitList = $('#habit-list');
@@ -234,14 +259,14 @@ function authDataCallback(authData) {
         /* Fetch habit list data */
         var childAdd = ref.on('child_added', function (snapshot) {
             var delay = 0; 
-            
+
             // get data
             var data = snapshot.val();
             var title = data.title;
             var dailyfrequency = data.daily_frequency;
             var dailycounter = data.dailycounter;
-            var daycounter = 10;
-            var record = 20;
+            var daycounter = data.daycounter;
+            var record = data.record;
             var icon_src = data.icon_src;
             var icon_id = data.icon_id;
 
@@ -283,7 +308,7 @@ function authDataCallback(authData) {
     }, function (errorObject) {
     });  
   } else {
-    console.log("User is logged out");
+    Rollbar.info("User is logged out");
     window.location.href = "../src/login.html";
   }
 }

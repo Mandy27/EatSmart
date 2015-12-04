@@ -10,10 +10,12 @@ $('.signUpButton').on('click', function onClickSignUp() {
 	  password : $("#password")[0].value
 	}, function(error, userData) {
 	  if (error) {
+	  	Rollbar.log(error); 
 	  	mixpanel.track("User failed to log in"); 
 	    signUpText.innerHTML = error+"<span style='color: red'>&#10005;</span>";
 	  } else {
 	  	mixpanel.track("User successfully logged in"); 
+	  	Rollbar.info("User logged in"); 
 	    signUpText.innerHTML = "Sign up successful! <span style='color: #4caf50'>&#10004;</span><br> Please Sign In !!!";
 	    $("#usermail")[0].value = "";
 	    $("#password")[0].value = "";
@@ -42,6 +44,7 @@ $('.loginButton').on('click',function onClickLogin(){
 	  password : $("#password")[0].value
 	}, function(error, authData) {
 		if (error) {
+			Rollbar.log(error); 
 			mixpanel.track("User failed to sign in"); 
 		    signUpText.innerHTML = error+"<span style='color: red'>&#10005;</span>";
 		} else {
