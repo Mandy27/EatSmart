@@ -12,8 +12,6 @@ Please use the following URL to see our application: https://shrouded-depths-768
 - UI focused JavaScript ( by Christine Lao )
 - Implemented Online Notification without using any library ( by Mandy Ngo , Tyler Nguyen)
 
-####Notes:
-
 ####Front-End
 - HTML
 - CSS
@@ -21,6 +19,14 @@ Please use the following URL to see our application: https://shrouded-depths-768
 
 ####Backend 
 - Firebase
+
+####Javascript Libraries Used
+
+####Javascript Files Created
+
+####Error Tracking
+
+####PhoneGap
 
 ####Browser Conformance: 
 - When running opening on Internet Explorer, it prompts you on whether you would like to enable ActiveX control in order to see the blocked content. 
