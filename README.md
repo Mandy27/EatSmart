@@ -1,4 +1,4 @@
-# EatSmart HW 4 and HW 5
+# EatSmart
 
 Please use the following URL to see our application: https://shrouded-depths-7682.herokuapp.com/src/login.html
 
