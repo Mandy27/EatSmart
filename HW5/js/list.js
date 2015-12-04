@@ -8,34 +8,7 @@ function updateProgress(element, int) {
     var msgElement = (element.parentNode.parentNode.getElementsByClassName("message-today"))[0];
     $(msgElement).animate({opacity: 1}, 300); 
 */
-    //Progress bar animation 
-    var progress = element.parentNode.parentNode.getElementsByClassName('progress');
-    var oldx2 = progress[0].getAttribute('x2'); 
-
-    var bar = element.parentNode.parentNode.getElementsByClassName('bar');
-    var oldx1 = bar[0].getAttribute('x1'); 
-    
     int++;
-
-
-    // Animates from current location on the bar 
-    $({x2:oldx2}).animate(
-        {x2: (Number(oldx2) + 5) + 'px'},
-        {
-            duration:200,
-            step:function(now){$(progress).attr('x2', now);
-            queue: false; 
-        }
-    });
-
-    $({x1:oldx1}).animate(
-        {x1: (Number(oldx1) + 5) + 'px'},
-        {
-            duration:200,
-            step:function(now){$(bar).attr('x1', now);
-            queue: false; 
-        }
-    });
 
     //keep track of clicks 
     var incrementProgress = new Firebase('https://burning-heat-9490.firebaseio.com/');
@@ -67,7 +40,35 @@ function updateProgress(element, int) {
                         text.innerHTML = newDailyProgress + '/' + dailyfreq; 
                         clicks--; 
                         console.log('clicks after' + clicks); 
-                        $(this).off('click');
+                        
+                        //Progress bar animation 
+                        var progress = element.parentNode.parentNode.getElementsByClassName('progress');
+                        var oldx2 = progress[0].getAttribute('x2'); 
+
+                        var bar = element.parentNode.parentNode.getElementsByClassName('bar');
+                        var oldx1 = bar[0].getAttribute('x1'); 
+
+                        var portion = 150/dailyfreq; 
+
+                        // Animates from current location on the bar 
+                        $({x2:oldx2}).animate(
+                            {x2: (Number(oldx2) + portion) + 'px'},
+                            {
+                                duration:200,
+                                step:function(now){$(progress).attr('x2', now);
+                                queue: false; 
+                            }
+                        });
+
+                        $({x1:oldx1}).animate(
+                            {x1: (Number(oldx1) + portion) + 'px'},
+                            {
+                                duration:200,
+                                step:function(now){$(bar).attr('x1', now);
+                                queue: false; 
+                            }
+                        });
+
                         return newDailyProgress; 
                     }
                   }, function (err){
@@ -232,6 +233,8 @@ function authDataCallback(authData) {
         });
         /* Fetch habit list data */
         var childAdd = ref.on('child_added', function (snapshot) {
+            var delay = 0; 
+            
             // get data
             var data = snapshot.val();
             var title = data.title;
@@ -239,9 +242,11 @@ function authDataCallback(authData) {
             var dailycounter = data.dailycounter;
             var daycounter = 10;
             var record = 20;
-            var delay = 0; 
             var icon_src = data.icon_src;
             var icon_id = data.icon_id;
+
+            var portion = 150/dailyfrequency * dailycounter; 
+
             //create habit
             if (!added){
                 habitList.prepend(
@@ -254,8 +259,8 @@ function authDataCallback(authData) {
                             '<span class="message-total">' +
                                 '<strong>' + daycounter + '</strong> days in a row! Best Record: <strong>' + record + '</strong><br>' +
                                 '<svg height="25" width="150">' +
-                                    '<line class="progress" x1="0" y1="0" x2="60" y2="0" style="stroke:rgba(65, 131, 215, 0.8);stroke-width:25" />' +
-                                    '<line class="bar" x1="60" y1="0" x2="150" y2="0" style="stroke:rgba(171,171,171,0.6);stroke-width:25" />' +
+                                    '<line class="progress" x1="0" y1="0" x2="' + portion + '" y2="0" style="stroke:rgba(65, 131, 215, 0.8);stroke-width:25" />' +
+                                    '<line class="bar" x1="'+ portion + '" y1="0" x2="150" y2="0" style="stroke:rgba(171,171,171,0.6);stroke-width:25" />' +
                                 '</svg>' +
                             '</span><br>' +
                             '<span class="message-today">Completed <strong>' + dailycounter + '/' + dailyfrequency + '</strong> for today!</span>' +
