@@ -23,21 +23,21 @@ function updateProgress(element, int) {
         Rollbar.debug('clicks before' + clicks); 
 
         ref.onAuth(function(authData) {
+            added = true;
             if (authData) {
-                console.log("User " + authData.uid + " is logged in with " + authData.provider);
+                Rollbar.debug("User " + authData.uid + " is logged in with " + authData.provider);
 
                 ref.on("value", function(snap) {
                   var dayHabit = ref.child(authData.uid).child('Habits').child(element.value).child('dailycounter'); 
                   var dailyfreq = snap.child(authData.uid).child('Habits').child(element.value).val()['daily_frequency']; 
                   var record = snap.child(authData.uid).child('Habits').child(element.value).val()['daycounter']; 
 
-                  dayHabit.transaction(function(currentDailyProgress){
-                    added = true; 
+                  dayHabit.transaction(function(currentDailyProgress){ 
                     if (currentDailyProgress < dailyfreq && clicks > 0){
                         /* Change the text on the page */
                         var text = element.parentElement.parentElement.getElementsByClassName('message-today')[0].getElementsByTagName('strong')[0]; 
                         var newDailyProgress = currentDailyProgress + 1; 
-                        console.log(newDailyProgress); 
+                        Rollbar.debug(newDailyProgress); 
                         text.innerHTML = newDailyProgress + '/' + dailyfreq; 
                         clicks--; 
                         Rollbar.debug('clicks after' + clicks); 
@@ -103,7 +103,7 @@ function updateProgress(element, int) {
                 }); 
             }
         });
-    
+    /*
         var errorId = 0;
 
         //increment the counter
@@ -128,6 +128,7 @@ function updateProgress(element, int) {
                 });        
             });
         }
+        */
 
     });
 }
@@ -165,6 +166,7 @@ function deleteHabit(element) {
 }
 
 // keep track of habit progress 
+/*
 var errorId = 0;
 function incrementId(){
     var incrementProgress = new Firebase('https://burning-heat-9490.firebaseio.com/');
@@ -173,6 +175,7 @@ function incrementId(){
         return (currentValue || 0) + 1
     });
 }   
+*/
 
 /*function(err, committed, ss){
              if(err){
