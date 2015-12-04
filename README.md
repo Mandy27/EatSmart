@@ -21,10 +21,11 @@ Please use the following URL to see our application: https://shrouded-depths-768
 - Firebase
 
 ####Javascript Libraries Used
-
-####Javascript Files Created
+- jquery-1.11.3.min.js
+- bootstrap.min.js
 
 ####Error Tracking
+- Rollbar
 
 ####PhoneGap
 
