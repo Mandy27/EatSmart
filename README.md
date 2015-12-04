@@ -1,7 +1,12 @@
-# EatSmart
+# EatSmart HW 4 and HW 5
+
+Please use the following URL to see our application: https://shrouded-depths-7682.herokuapp.com/src/login.html
+
 ####Implemented Features:
 - Added list elements to list page from database ( by Chloe Lopez)
 - Create Habit and add in Firebase database. ( by Harrison Wang)
+- Implement Grunt for minification and bundling (by Harrison Wang, Mandy Ngo)
+- Deploy application with Heroku (by Harrison Wang) 
 - Edit Habit and save in database ( by Mandy Ngo )
 - Delete Habit and save in database ( by Mandy Ngo )
 - UI focused JavaScript ( by Christine Lao )
