@@ -127,7 +127,7 @@ function authDataCallback(authData) {
       mixpanel.track("User edited a habit"); 
     });
   } else {
-    console.log("User is logged out");
+    Rollbar.info("User is logged out");
     window.location.href = "../src/login.html";
   }
 }

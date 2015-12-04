@@ -4,9 +4,10 @@ function displayHabits (name, text) {
 };
 
 function updateProgress(element, int) {
+    /*
     var msgElement = (element.parentNode.parentNode.getElementsByClassName("message-today"))[0];
     $(msgElement).animate({opacity: 1}, 300); 
-
+*/
     //Progress bar animation 
     var progress = element.parentNode.parentNode.getElementsByClassName('progress');
     var oldx2 = progress[0].getAttribute('x2'); 
@@ -37,14 +38,52 @@ function updateProgress(element, int) {
 
     //keep track of clicks 
     var incrementProgress = new Firebase('https://burning-heat-9490.firebaseio.com/');
+    var ref = new Firebase('https://burning-heat-9490.firebaseio.com/Custom');
+    var clicks = 0; 
 
     //creates a new, incremental record
-    $('#increment').on('click', incrementId);
+    $('body').on('click', '#increment', function incrementId(e){
+        mixpanel.track("User updated progress of habit"); 
+        console.log('click'); 
+        clicks++; 
+        console.log('clicks before' + clicks); 
+
+        ref.onAuth(function(authData) {
+            if (authData) {
+                console.log("User " + authData.uid + " is logged in with " + authData.provider);
+
+                ref.on("value", function(snap) {
+                  var dayHabit = ref.child(authData.uid).child('Habits').child(element.value).child('daycounter'); 
+                  var dailyfreq = snap.child(authData.uid).child('Habits').child(element.value).val()['daily_frequency']; 
+
+                  dayHabit.transaction(function(currentDailyProgress){
+                    added = true; 
+                    if (currentDailyProgress < dailyfreq && clicks > 0){
+                        /* Change the text on the page */
+                        var text = element.parentElement.parentElement.getElementsByClassName('message-today')[0].getElementsByTagName('strong')[0]; 
+                        var newDailyProgress = currentDailyProgress + 1; 
+                        console.log(newDailyProgress); 
+                        text.innerHTML = newDailyProgress + '/' + dailyfreq; 
+                        clicks--; 
+                        console.log('clicks after' + clicks); 
+                        $(this).off('click');
+                        return newDailyProgress; 
+                    }
+                  }, function (err){
+
+                  }); 
+                e.stopImmediatePropagation();
+                }); 
+            }
+        });
+    });
 
     var errorId = 0;
+    //var transactionComplete = false;
+
     //creates a new, incremental record
-    function incrementId(){
-        mixpanel.track("User updated progress of habit"); 
+     
+/*
         //increment the counter
         incrementProgress.child('counter').transaction(function(currentValue){
             return (currentValue || 0) + 1
@@ -68,6 +107,7 @@ function updateProgress(element, int) {
             });        
         });
     }
+    */
 }
 
 /* Transition animations when a habit is deleted */
@@ -200,7 +240,7 @@ function authDataCallback(authData) {
             var data = snapshot.val();
             var title = data.title;
             var dailyfrequency = data.daily_frequency;
-            var dailycounter = 0;
+            var dailycounter = data.daycounter;
             var daycounter = 10;
             var record = 20;
             var delay = 0; 
@@ -225,7 +265,7 @@ function authDataCallback(authData) {
                             '<span class="message-today">Completed <strong>' + dailycounter + '/' + dailyfrequency + '</strong> for today!</span>' +
                         '</div>' +
                         '<div class="habit-op">' +
-                            '<button type="button" id= "increment" class="op op-done" onclick="updateProgress(this,' + dailycounter + ');" title="done">' +
+                            '<button type="button" id= "increment" class="op op-done" onclick="updateProgress(this,' + dailycounter + ');" title="done" value='+snapshot.key()+'>' +
                                 '<img src="../img/done.svg" alt="Done">' +
                             '</button>' +
                             '<button type="button" class="op op-edit" onclick="editPageTransition(this.id)" title="edit habit" id='+snapshot.key()+'>' +
