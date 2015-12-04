@@ -14,6 +14,9 @@ Please use the following URL to see our application: https://shrouded-depths-768
 - Packaged Google Chrome Extension (by Chloe Lopez)
 - Implement NodeJs, Grunt, Nodemon, Uglify, CSSMin for minifications, bundling, automating file modification updates (by Harrison Wang, Mandy Ngo)
 - Deploy application with Heroku (by Harrison Wang) 
+- Counter and record added to Firebase database (by Christine Lao)
+- Included Error Tracking using Rollbar (by Christine Lao)
+- Included User Analytics using Mixpanel (by Christine Lao)
 
 ####Front-End
 - HTML
@@ -31,6 +34,15 @@ Please use the following URL to see our application: https://shrouded-depths-768
 
 ####Error Tracking
 - Rollbar
+We deployed error tracking in Heroku, and logged a few debug and info messages using Rollbar. And during production, Rollbar kept track of the errors that were appearing in JavaScript.
+Login: clao@ucsd.edu
+Password: eatsmart
+
+####User Analytics 
+- Mixpanel
+We tracked events such as page views, what the user were doing with habits, and whether or not the user successfully signed up. Using this information, we created a funnel checking the completion rate of a user loging in after reaching the login page. Additionally we kept track of how long it took a user to edit a habit. User profiles were also created to track what users where doing in the application. And kept track of the number of habits a user was keeping at any time.
+Login: clao@ucsd.edu
+Password: eatsmart
 
 ####PhoneGap
 The app was packaged using Phonegap Build. From this, we were able to generate a .apk file. The javascript would need to be adjusted for it to work correctly with the Phonegap framework, but it is compatible with the Firebase database. We did not create an iOS app because it requires a developer certification. 
