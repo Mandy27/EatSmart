@@ -57,4 +57,4 @@ This task runner is used to automate the minification of HTML, CSS, and Javascri
 The app has been packaged as a Google Chrome extension. It requires some JavaScript alterations in order to work correctly. Firebase is compatible with Chrome extensions, but we encountered problems with content security policies. The content security policy is included in manifest.json, but there are still JS errors. Also, Google Chrome does not allow inline scripts for security reasons, so inline scripts must be removed.
 
 ####Notes:
-Received feedback for HW4 about validation issues (accepting invalid habits, invalid login credentials) very late, so we did not have enough time to implement these features in HW5. 
+Received feedback for HW4 about validation issues (accepting invalid habits, invalid login credentials) very late. We already deployed the application at the point of receiving feedback, so we did not have enough time to implement these features in HW5.
