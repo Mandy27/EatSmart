@@ -31,6 +31,9 @@ var ref = new Firebase("https://burning-heat-9490.firebaseio.com/");
 //ref.unauth();
 ref.onAuth(authDataCallback);
 function authDataCallback(authData) {
+  var dailycounter; 
+  var daycounter; 
+  var record; 
   if (authData) {
     console.log("User " + authData.uid + " is logged in with " + authData.provider);
     var key = window.location.href;
@@ -40,6 +43,9 @@ function authDataCallback(authData) {
       dataRef.on("value", function(snapshot) {
         var data = snapshot.val().Habits[key];
         $("#title")[0].value = data.title;
+        dailycounter = data.dailycounter; 
+        daycounter = data.daycounter; 
+        record = data.record; 
         var weekdays = document.getElementsByClassName('days');
         _.each(weekdays,function(d){
           if(_.indexOf(data.weekly_frequency,Number(d.value)) != -1){
@@ -123,7 +129,7 @@ function authDataCallback(authData) {
       var start = hours[0].value; 
       var end = hours[1].value; 
 
-      newHabit.child(key).set({title:title, icon_id : selected_icon.id, icon_src: selected_icon.src, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end});
+      newHabit.child(key).set({title:title, icon_id : selected_icon.id, icon_src: selected_icon.src, daily_frequency:daily, weekly_frequency:weeklyFreqArray, time_interval:interval, from: start, to: end, dailycounter:dailycounter, record:record, daycounter:daycounter});
       mixpanel.track("User edited a habit"); 
     });
   } else {
