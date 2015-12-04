@@ -7,6 +7,7 @@ Please use the following URL to see our application: https://shrouded-depths-768
 - Create Habit and add in Firebase database. (by Harrison Wang)
 - Edit Habit and save in database (by Mandy Ngo)
 - Delete Habit and save in database (by Mandy Ngo)
+- Login Authentication (by Mandy Ngo, Tyler Nguyen)
 - UI focused JavaScript (by Christine Lao)
 - Implemented Online Notification without using any library (by Mandy Ngo, Tyler Nguyen)
 - Generated .apk using Phonegap Build (by Chloe Lopez)
