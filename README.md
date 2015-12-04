@@ -33,13 +33,13 @@ Please use the following URL to see our application: https://shrouded-depths-768
 - lodash v3.10.1
 
 ####Error Tracking - Rollbar
-We deployed error tracking in Heroku, and logged a few debug and info messages using Rollbar. And during production, Rollbar kept track of the errors that were appearing in JavaScript.
-Login: clao@ucsd.edu
+We deployed error tracking in Heroku, and logged a few debug and info messages using Rollbar. And during production, Rollbar kept track of the errors that were appearing in JavaScript.__
+Login: clao@ucsd.edu__
 Password: eatsmart
 
 ####User Analytics - Mixpanel
-We tracked events such as page views, what the user were doing with habits, and whether or not the user successfully signed up. Using this information, we created a funnel checking the completion rate of a user loging in after reaching the login page. Additionally we kept track of how long it took a user to edit a habit. User profiles were also created to track what users where doing in the application. And kept track of the number of habits a user was keeping at any time.
-Login: clao@ucsd.edu
+We tracked events such as page views, what the user were doing with habits, and whether or not the user successfully signed up. Using this information, we created a funnel checking the completion rate of a user loging in after reaching the login page. Additionally we kept track of how long it took a user to edit a habit. User profiles were also created to track what users where doing in the application. And kept track of the number of habits a user was keeping at any time.__
+Login: clao@ucsd.edu__
 Password: eatsmart
 
 ####PhoneGap
